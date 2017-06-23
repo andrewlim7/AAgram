@@ -20,8 +20,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
+        handleUser(Auth.auth().currentUser)
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            self.handleUser(user)
+        }
+        
         return true
     }
+    
+    func handleUser(_ user : User?){
+        if user != nil {
+            self.displayMainScreen()
+            return;
+        } else {
+            self.displayLoginScreen()
+        }
+    }
+    
+    func displayLoginScreen(){
+        let authStoryboard = UIStoryboard(name: "Auth", bundle: Bundle.main)
+        let loginViewController = authStoryboard.instantiateViewController(withIdentifier: "UINavigationController")
+        window?.rootViewController = loginViewController
+        window?.makeKeyAndVisible()
+    }
+    
+    func displayMainScreen(){
+        let authStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let mainViewController = authStoryboard.instantiateViewController(withIdentifier: "FeedVC")
+        
+        window?.rootViewController = mainViewController
+        window?.makeKeyAndVisible()
+    }
+    
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

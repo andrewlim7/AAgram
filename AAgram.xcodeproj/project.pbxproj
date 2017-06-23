@@ -18,6 +18,10 @@
 		C77CFD8F1EFD04C20047F1DC /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77CFD8E1EFD04C20047F1DC /* RegisterVC.swift */; };
 		C77CFD911EFD04FE0047F1DC /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77CFD901EFD04FE0047F1DC /* FeedVC.swift */; };
 		C77CFD931EFD07D10047F1DC /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77CFD921EFD07D10047F1DC /* ProfileVC.swift */; };
+		C77CFD951EFD0AF80047F1DC /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77CFD941EFD0AF80047F1DC /* EditProfileVC.swift */; };
+		C77CFD971EFD0B090047F1DC /* PostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77CFD961EFD0B090047F1DC /* PostVC.swift */; };
+		C77CFD991EFD0B140047F1DC /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77CFD981EFD0B140047F1DC /* SearchVC.swift */; };
+		C77CFD9B1EFD0B510047F1DC /* PostAndSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C77CFD9A1EFD0B510047F1DC /* PostAndSearch.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +39,10 @@
 		C77CFD8E1EFD04C20047F1DC /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		C77CFD901EFD04FE0047F1DC /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		C77CFD921EFD07D10047F1DC /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		C77CFD941EFD0AF80047F1DC /* EditProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
+		C77CFD961EFD0B090047F1DC /* PostVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostVC.swift; sourceTree = "<group>"; };
+		C77CFD981EFD0B140047F1DC /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		C77CFD9A1EFD0B510047F1DC /* PostAndSearch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PostAndSearch.storyboard; sourceTree = "<group>"; };
 		E4B52C4AC1018786A6283514 /* Pods_AAgram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AAgram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -122,6 +130,9 @@
 				C77CFD8E1EFD04C20047F1DC /* RegisterVC.swift */,
 				C77CFD901EFD04FE0047F1DC /* FeedVC.swift */,
 				C77CFD921EFD07D10047F1DC /* ProfileVC.swift */,
+				C77CFD941EFD0AF80047F1DC /* EditProfileVC.swift */,
+				C77CFD961EFD0B090047F1DC /* PostVC.swift */,
+				C77CFD981EFD0B140047F1DC /* SearchVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -130,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				C7743D111EFCFD9E00B39FB2 /* Auth.storyboard */,
+				C77CFD9A1EFD0B510047F1DC /* PostAndSearch.storyboard */,
 				C7743D011EFCF6CF00B39FB2 /* Main.storyboard */,
 			);
 			name = Storyboard;
@@ -201,6 +213,7 @@
 				C7743D101EFCF82600B39FB2 /* GoogleService-Info.plist in Resources */,
 				C7743D051EFCF6CF00B39FB2 /* Assets.xcassets in Resources */,
 				C7743D121EFCFD9E00B39FB2 /* Auth.storyboard in Resources */,
+				C77CFD9B1EFD0B510047F1DC /* PostAndSearch.storyboard in Resources */,
 				C7743D031EFCF6CF00B39FB2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,7 +233,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		5352923CA37395034330EF0E /* [CP] Copy Pods Resources */ = {
@@ -260,10 +273,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C77CFD991EFD0B140047F1DC /* SearchVC.swift in Sources */,
 				C77CFD931EFD07D10047F1DC /* ProfileVC.swift in Sources */,
 				C77CFD911EFD04FE0047F1DC /* FeedVC.swift in Sources */,
 				C77CFD8F1EFD04C20047F1DC /* RegisterVC.swift in Sources */,
 				C7743CFE1EFCF6CF00B39FB2 /* AppDelegate.swift in Sources */,
+				C77CFD971EFD0B090047F1DC /* PostVC.swift in Sources */,
+				C77CFD951EFD0AF80047F1DC /* EditProfileVC.swift in Sources */,
 				C77CFD891EFD04090047F1DC /* LoginVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

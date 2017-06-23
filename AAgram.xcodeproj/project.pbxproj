@@ -14,10 +14,10 @@
 		C7743D081EFCF6CF00B39FB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7743D061EFCF6CF00B39FB2 /* LaunchScreen.storyboard */; };
 		C7743D101EFCF82600B39FB2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7743D0F1EFCF82600B39FB2 /* GoogleService-Info.plist */; };
 		C7743D121EFCFD9E00B39FB2 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7743D111EFCFD9E00B39FB2 /* Auth.storyboard */; };
-		C7743D141EFCFDAA00B39FB2 /* MainFunction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7743D131EFCFDAA00B39FB2 /* MainFunction.storyboard */; };
 		C77CFD891EFD04090047F1DC /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77CFD881EFD04090047F1DC /* LoginVC.swift */; };
 		C77CFD8F1EFD04C20047F1DC /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77CFD8E1EFD04C20047F1DC /* RegisterVC.swift */; };
 		C77CFD911EFD04FE0047F1DC /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77CFD901EFD04FE0047F1DC /* FeedVC.swift */; };
+		C77CFD931EFD07D10047F1DC /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77CFD921EFD07D10047F1DC /* ProfileVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,10 +31,10 @@
 		C7743D091EFCF6CF00B39FB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7743D0F1EFCF82600B39FB2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C7743D111EFCFD9E00B39FB2 /* Auth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
-		C7743D131EFCFDAA00B39FB2 /* MainFunction.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainFunction.storyboard; sourceTree = "<group>"; };
 		C77CFD881EFD04090047F1DC /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		C77CFD8E1EFD04C20047F1DC /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		C77CFD901EFD04FE0047F1DC /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
+		C77CFD921EFD07D10047F1DC /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		E4B52C4AC1018786A6283514 /* Pods_AAgram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AAgram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -121,6 +121,7 @@
 				C77CFD881EFD04090047F1DC /* LoginVC.swift */,
 				C77CFD8E1EFD04C20047F1DC /* RegisterVC.swift */,
 				C77CFD901EFD04FE0047F1DC /* FeedVC.swift */,
+				C77CFD921EFD07D10047F1DC /* ProfileVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -130,7 +131,6 @@
 			children = (
 				C7743D111EFCFD9E00B39FB2 /* Auth.storyboard */,
 				C7743D011EFCF6CF00B39FB2 /* Main.storyboard */,
-				C7743D131EFCFDAA00B39FB2 /* MainFunction.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -202,7 +202,6 @@
 				C7743D051EFCF6CF00B39FB2 /* Assets.xcassets in Resources */,
 				C7743D121EFCFD9E00B39FB2 /* Auth.storyboard in Resources */,
 				C7743D031EFCF6CF00B39FB2 /* Main.storyboard in Resources */,
-				C7743D141EFCFDAA00B39FB2 /* MainFunction.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C77CFD931EFD07D10047F1DC /* ProfileVC.swift in Sources */,
 				C77CFD911EFD04FE0047F1DC /* FeedVC.swift in Sources */,
 				C77CFD8F1EFD04C20047F1DC /* RegisterVC.swift in Sources */,
 				C7743CFE1EFCF6CF00B39FB2 /* AppDelegate.swift in Sources */,

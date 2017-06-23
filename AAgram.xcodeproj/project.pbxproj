@@ -13,6 +13,8 @@
 		C7743D051EFCF6CF00B39FB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7743D041EFCF6CF00B39FB2 /* Assets.xcassets */; };
 		C7743D081EFCF6CF00B39FB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7743D061EFCF6CF00B39FB2 /* LaunchScreen.storyboard */; };
 		C7743D101EFCF82600B39FB2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7743D0F1EFCF82600B39FB2 /* GoogleService-Info.plist */; };
+		C7743D121EFCFD9E00B39FB2 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7743D111EFCFD9E00B39FB2 /* Login.storyboard */; };
+		C7743D141EFCFDAA00B39FB2 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7743D131EFCFDAA00B39FB2 /* Register.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		C7743D071EFCF6CF00B39FB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C7743D091EFCF6CF00B39FB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7743D0F1EFCF82600B39FB2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C7743D111EFCFD9E00B39FB2 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		C7743D131EFCFDAA00B39FB2 /* Register.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,8 @@
 				C7743CFD1EFCF6CF00B39FB2 /* AppDelegate.swift */,
 				C7743CFF1EFCF6CF00B39FB2 /* ViewController.swift */,
 				C7743D011EFCF6CF00B39FB2 /* Main.storyboard */,
+				C7743D111EFCFD9E00B39FB2 /* Login.storyboard */,
+				C7743D131EFCFDAA00B39FB2 /* Register.storyboard */,
 				C7743D041EFCF6CF00B39FB2 /* Assets.xcassets */,
 				C7743D061EFCF6CF00B39FB2 /* LaunchScreen.storyboard */,
 				C7743D091EFCF6CF00B39FB2 /* Info.plist */,
@@ -129,7 +135,9 @@
 				C7743D081EFCF6CF00B39FB2 /* LaunchScreen.storyboard in Resources */,
 				C7743D101EFCF82600B39FB2 /* GoogleService-Info.plist in Resources */,
 				C7743D051EFCF6CF00B39FB2 /* Assets.xcassets in Resources */,
+				C7743D121EFCFD9E00B39FB2 /* Login.storyboard in Resources */,
 				C7743D031EFCF6CF00B39FB2 /* Main.storyboard in Resources */,
+				C7743D141EFCFDAA00B39FB2 /* Register.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

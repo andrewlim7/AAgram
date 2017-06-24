@@ -1,4 +1,4 @@
-//
+ //
 //  LoginVC.swift
 //  AAgram
 //
@@ -8,8 +8,9 @@
 
 import UIKit
 import FirebaseAuth
+import FBSDKLoginKit
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController,FBSDKLoginButtonDelegate {
     
     @IBOutlet weak var emailTextField: UITextField! {
         didSet{
@@ -20,14 +21,22 @@ class LoginVC: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField! {
         didSet{
             passwordTextField.placeholder = "Insert password"
+            passwordTextField.isSecureTextEntry = true
         }
     }
     
-    @IBOutlet weak var loginButton: UIButton! {
+    @IBOutlet weak var emailLoginButton: UIButton! {
         didSet{
-            loginButton.addTarget(self, action: #selector(didTapLoginButton(_:)), for: .touchUpInside)
+            emailLoginButton.addTarget(self, action: #selector(didTapLoginButton(_:)), for: .touchUpInside)
         }
     }
+    
+    @IBOutlet weak var fbLoginButton: FBSDKLoginButton! {
+        didSet{
+            fbLoginButton.delegate = self
+        }
+    }
+    
     
     let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
 
@@ -35,13 +44,39 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: true)
         setupSpinner()
-
-        // Do any additional setup after loading the view.
+    
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+    }
+    
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+            print("HELLOOOOOOOOOOOOOOO")
+        if let error = error {
+            print(error.localizedDescription)
+            self.fbAlert()
+            return
+        } else if (result.isCancelled == true) {
+            print("ERROR")
+
+        } else {
+            let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+            Auth.auth().signIn(with: credential) { (user, error) in
+                // put all the user detail 
+   
+            }
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let mainVC = storyboard.instantiateViewController(withIdentifier: "FeedVC") as! FeedVC
+            self.present(mainVC, animated: true, completion: nil)
+        }
+        
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        print("FB logout successfully!")
     }
     
     func didTapLoginButton(_ sender: Any){
@@ -67,6 +102,7 @@ class LoginVC: UIViewController {
                     self.emailInvalidAlert()
                     return;
                 }
+                
                 
                 print("User exist \(user?.uid ?? "")")
                 let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
@@ -123,6 +159,13 @@ class LoginVC: UIViewController {
         
         present(alertController, animated: true, completion: nil)
         self.myActivityIndicator.stopAnimating()
+    }
+    
+    func fbAlert(){
+        let alertController = UIAlertController(title: "Login Error", message: "Please try again", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(ok)
+        self.present(alertController, animated: true, completion: nil)
     }
 
 }

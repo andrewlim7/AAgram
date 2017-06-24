@@ -83,11 +83,11 @@ class RegisterVC: UIViewController {
             
         } else {
             
-            Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+            Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
                 if let validError = error {
                     print(validError.localizedDescription)
                     return;
-                    }
+                }
                 
                 let uid = Auth.auth().currentUser?.uid
                 
@@ -106,10 +106,9 @@ class RegisterVC: UIViewController {
                 print("User email address! \(user?.email ?? "")")
                 print("Username is \(username)")
                 
-                }
-            }
-
+            })
         }
+    }
     
     func setupSpinner(){
         // Position Activity Indicator in the center of the main view

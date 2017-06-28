@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
+import FBSDKLoginKit
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -35,21 +36,22 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func didTapLogoutButton(_ sender:Any){
-        
         let firebaseAuth = Auth.auth()
+        let loginManager = FBSDKLoginManager() //FB system logout
         
-        do {
-            
-            try firebaseAuth.signOut()
+            do {
+                try firebaseAuth.signOut()  //please ask kh why 2nd logout will reappeared logout
+                loginManager.logOut()
+                
+                print ("Logged out successfully!")
+                
+            } catch let signOutError as NSError {
+                
+                print ("Error signing out: %@", signOutError)
+                return
+            }
             
             self.dismiss(animated: true, completion: nil)
-            
-            print ("Logged out successfully!")
-            
-        } catch let signOutError as NSError {
-            
-            print ("Error signing out: %@", signOutError)
-        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

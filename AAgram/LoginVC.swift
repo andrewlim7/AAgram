@@ -36,6 +36,7 @@ class LoginVC: UIViewController,FBSDKLoginButtonDelegate {
             fbLoginButton.delegate = self
         }
     }
+
     
     
     let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
@@ -89,16 +90,16 @@ class LoginVC: UIViewController,FBSDKLoginButtonDelegate {
         }
         
         if emailTextField.text == "" {
-            self.emailAlert()
+            self.warningAlert(warningMessage: "Please enter your email")
             
         } else if password == "" || password.characters.count < 6 {
-            self.passwordAlert()
+            self.warningAlert(warningMessage: "Please enter your password")
             
         } else {
             Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
                 if let validError = error {
                     print(validError.localizedDescription)
-                    self.emailInvalidAlert()
+                    self.warningAlert(warningMessage: "Please enter your email or password correctly!")
                     return;
                 }
                 
@@ -131,33 +132,14 @@ class LoginVC: UIViewController,FBSDKLoginButtonDelegate {
         view.addSubview(myActivityIndicator)
     }
     
-    func emailAlert() {
-        let alertController = UIAlertController(title: "Error", message: "Please enter your email", preferredStyle: .alert)
+    func warningAlert(warningMessage: String){
+        let alertController = UIAlertController(title: "Error", message: warningMessage, preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(ok)
         
         present(alertController, animated: true, completion: nil)
         self.myActivityIndicator.stopAnimating()
-    }
-    
-    func passwordAlert() {
-        let alertController = UIAlertController(title: "Error", message: "Please enter your password", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        
-        alertController.addAction(ok)
-        
-        present(alertController, animated: true, completion: nil)
-        self.myActivityIndicator.stopAnimating()
-    }
-    
-    func emailInvalidAlert() {
-        let alertController = UIAlertController(title: "Error", message: "Please enter your email or password correctly!", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        
-        alertController.addAction(ok)
-        
-        present(alertController, animated: true, completion: nil)
-        self.myActivityIndicator.stopAnimating()
+
     }
     
     func fbAlert(){

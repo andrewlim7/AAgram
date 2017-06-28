@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,7 +17,7 @@
                         <viewControllerLayoutGuide type="top" id="gA8-kK-wwg"/>
                         <viewControllerLayoutGuide type="bottom" id="Wag-kU-FuS"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="4sl-LI-jnh" customClass="FBSDKLoginButton">
+                    <view key="view" contentMode="scaleToFill" id="4sl-LI-jnh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -57,13 +57,19 @@
                                     <action selector="signUpButtonTapped:" destination="ppD-ev-Jnf" eventType="touchUpInside" id="EP9-uN-RTN"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="95S-Sy-Vda" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="8" y="480" width="359" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="NiI-Nv-Z7Y"/>
                     <connections>
+                        <outlet property="emailLoginButton" destination="YEb-qb-btg" id="O2q-7Q-0RV"/>
                         <outlet property="emailTextField" destination="bkI-qL-v3O" id="WhT-Sm-4W9"/>
-                        <outlet property="loginButton" destination="YEb-qb-btg" id="NZh-dF-T6Y"/>
+                        <outlet property="fbLoginButton" destination="95S-Sy-Vda" id="NgQ-ao-KyO"/>
                         <outlet property="passwordTextField" destination="f5X-E6-2DO" id="8J8-8S-vF0"/>
                     </connections>
                 </viewController>

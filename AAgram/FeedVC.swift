@@ -31,17 +31,20 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         fetchChats()
-        let currentIndex = 0
-        let currentVC = self.tabBarController?.viewControllers
-        let nextVC = currentVC![3] as! PostVC
-        nextVC.currentTabIndex = currentIndex
-        
+
         // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let currentIndex = 0
+        let currentVC = self.tabBarController?.viewControllers
+        let nextVC = currentVC![3] as! PostVC
+        nextVC.currentTabIndex = currentIndex
     }
     
     func didTapLogoutButton(_ sender:Any){

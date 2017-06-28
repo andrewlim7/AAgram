@@ -20,16 +20,18 @@ class SearchVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        let currentIndex = 1
-        let currentVC = self.tabBarController?.viewControllers
-        let nextVC = currentVC![3] as! PostVC
-        nextVC.currentTabIndex = currentIndex
-        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let currentIndex = 1
+        let currentVC = self.tabBarController?.viewControllers
+        let nextVC = currentVC![3] as! PostVC
+        nextVC.currentTabIndex = currentIndex
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

@@ -135,9 +135,10 @@ class PostVC: UIViewController,UITabBarControllerDelegate {
                 self.addPictureAndCaption(self.textView.text, imageURL: imageURL)
             }
             self.isNewPost = true
-            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let feedVC = storyboard.instantiateViewController(withIdentifier: "TabBarNavi")
-            self.present(feedVC, animated: true, completion: nil)
+            self.tabBarController?.selectedIndex = 0
+            //let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            //let feedVC = storyboard.instantiateViewController(withIdentifier: "TabBarNavi")
+            //self.present(feedVC, animated: true, completion: nil)
         }
     }
 }

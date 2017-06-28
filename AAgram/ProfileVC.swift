@@ -17,7 +17,10 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
 
         collectionView.dataSource = self
         collectionView.delegate = self
-        
+    
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         let currentIndex = 2
         let currentVC = self.tabBarController?.viewControllers
         let nextVC = currentVC![3] as! PostVC

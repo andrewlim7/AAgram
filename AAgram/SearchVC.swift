@@ -19,7 +19,12 @@ class SearchVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
 
         collectionView.dataSource = self
         collectionView.delegate = self
-        // Do any additional setup after loading the view.
+        
+        let currentIndex = 1
+        let currentVC = self.tabBarController?.viewControllers
+        let nextVC = currentVC![3] as! PostVC
+        nextVC.currentTabIndex = currentIndex
+        
     }
 
     override func didReceiveMemoryWarning() {

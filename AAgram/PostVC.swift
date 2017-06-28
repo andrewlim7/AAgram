@@ -29,14 +29,12 @@ class PostVC: UIViewController,UITabBarControllerDelegate {
     var isNewPost : Bool = true
     
     var getUsername : String = ""
-    
+    var currentTabIndex : Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getUsernameFromDB()
         self.tabBarController?.delegate = self
-//        let navigationController = UINavigationController(rootViewController: UIViewController) as! FeedVC
-        
 
     }
     
@@ -72,9 +70,7 @@ class PostVC: UIViewController,UITabBarControllerDelegate {
         let tarBarIndex = tabBarController.selectedIndex
         if tarBarIndex == 3 {
             //insert image picker view
-//            let pickerController = UIImagePickerController()
-//            pickerController.delegate = self
-//            present(pickerController, animated: true, completion: nil)
+
             print("TEST")
         }
 
@@ -102,6 +98,7 @@ class PostVC: UIViewController,UITabBarControllerDelegate {
     }
     
     func doneButtonTapped(_ sender: Any){
+        self.doneButton.isEnabled = false
         let storageRef = Storage.storage().reference()
         
         let metadata = StorageMetadata()
@@ -137,6 +134,10 @@ class PostVC: UIViewController,UITabBarControllerDelegate {
                 //method 2 directly download from URL which is using extension
                 self.addPictureAndCaption(self.textView.text, imageURL: imageURL)
             }
+            self.isNewPost = true
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let feedVC = storyboard.instantiateViewController(withIdentifier: "TabBarNavi")
+            self.present(feedVC, animated: true, completion: nil)
         }
     }
 }
@@ -147,6 +148,8 @@ extension PostVC : UIImagePickerControllerDelegate, UINavigationControllerDelega
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) { //cancel button in photo
         isNewPost = true
         dismiss(animated: true, completion: nil)
+        self.tabBarController?.selectedIndex = self.currentTabIndex
+
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -154,6 +157,7 @@ extension PostVC : UIImagePickerControllerDelegate, UINavigationControllerDelega
         let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         
         self.imageView.image = selectedImage
+        self.doneButton.isEnabled = true
         
         dismiss(animated: true, completion: nil)
         

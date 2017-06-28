@@ -24,12 +24,18 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var datas : [Data] = []
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
         fetchChats()
+        let currentIndex = 0
+        let currentVC = self.tabBarController?.viewControllers
+        let nextVC = currentVC![3] as! PostVC
+        nextVC.currentTabIndex = currentIndex
+        
         // Do any additional setup after loading the view.
     }
 

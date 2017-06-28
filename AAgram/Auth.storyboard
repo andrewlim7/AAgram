@@ -17,7 +17,7 @@
                         <viewControllerLayoutGuide type="top" id="gA8-kK-wwg"/>
                         <viewControllerLayoutGuide type="bottom" id="Wag-kU-FuS"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="4sl-LI-jnh">
+                    <view key="view" contentMode="scaleToFill" id="4sl-LI-jnh" customClass="FBSDKLoginButton">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -141,7 +141,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Nj2-vw-UWH">
             <objects>
-                <navigationController storyboardIdentifier="UINavigationController" automaticallyAdjustsScrollViewInsets="NO" id="f4p-Ny-6j3" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="UINavigationController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="f4p-Ny-6j3" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="glJ-ns-HwL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

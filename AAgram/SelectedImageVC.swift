@@ -1,14 +1,14 @@
 //
-//  EditProfileVC.swift
+//  SelectedImageVC.swift
 //  AAgram
 //
-//  Created by Andrew Lim on 23/06/2017.
+//  Created by Mohd Adam on 27/06/2017.
 //  Copyright © 2017 Andrew Lim. All rights reserved.
 //
 
 import UIKit
 
-class EditProfileVC: UIViewController {
+class SelectedImageVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,12 +18,14 @@ class EditProfileVC: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
-    @IBAction func doneBtnPressed(_ sender: Any) {
-        
-        self.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func exitBtnPressed(_ sender: Any) {
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+
 
 }

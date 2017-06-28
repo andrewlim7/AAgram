@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		40EB1471550CFEAF6BF5D9C2 /* Pods_AAgram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B52C4AC1018786A6283514 /* Pods_AAgram.framework */; };
+		818EF3BE1F02A7C8009F4B19 /* SelectedImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818EF3BD1F02A7C8009F4B19 /* SelectedImageVC.swift */; };
 		C7743CFE1EFCF6CF00B39FB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7743CFD1EFCF6CF00B39FB2 /* AppDelegate.swift */; };
 		C7743D031EFCF6CF00B39FB2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7743D011EFCF6CF00B39FB2 /* Main.storyboard */; };
 		C7743D051EFCF6CF00B39FB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7743D041EFCF6CF00B39FB2 /* Assets.xcassets */; };
@@ -21,11 +22,11 @@
 		C77CFD951EFD0AF80047F1DC /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77CFD941EFD0AF80047F1DC /* EditProfileVC.swift */; };
 		C77CFD971EFD0B090047F1DC /* PostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77CFD961EFD0B090047F1DC /* PostVC.swift */; };
 		C77CFD991EFD0B140047F1DC /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77CFD981EFD0B140047F1DC /* SearchVC.swift */; };
-		C77CFD9B1EFD0B510047F1DC /* PostAndSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C77CFD9A1EFD0B510047F1DC /* PostAndSearch.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		33DB1A9451C0C4A22EDF7CF1 /* Pods-AAgram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AAgram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AAgram/Pods-AAgram.debug.xcconfig"; sourceTree = "<group>"; };
+		818EF3BD1F02A7C8009F4B19 /* SelectedImageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedImageVC.swift; sourceTree = "<group>"; };
 		99D54A00CD4F3F3BC4863115 /* Pods-AAgram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AAgram.release.xcconfig"; path = "Pods/Target Support Files/Pods-AAgram/Pods-AAgram.release.xcconfig"; sourceTree = "<group>"; };
 		C7743CFA1EFCF6CF00B39FB2 /* AAgram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AAgram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7743CFD1EFCF6CF00B39FB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -42,7 +43,6 @@
 		C77CFD941EFD0AF80047F1DC /* EditProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		C77CFD961EFD0B090047F1DC /* PostVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostVC.swift; sourceTree = "<group>"; };
 		C77CFD981EFD0B140047F1DC /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
-		C77CFD9A1EFD0B510047F1DC /* PostAndSearch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PostAndSearch.storyboard; sourceTree = "<group>"; };
 		E4B52C4AC1018786A6283514 /* Pods_AAgram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AAgram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -129,6 +129,7 @@
 				C77CFD881EFD04090047F1DC /* LoginVC.swift */,
 				C77CFD8E1EFD04C20047F1DC /* RegisterVC.swift */,
 				C77CFD901EFD04FE0047F1DC /* FeedVC.swift */,
+				818EF3BD1F02A7C8009F4B19 /* SelectedImageVC.swift */,
 				C77CFD921EFD07D10047F1DC /* ProfileVC.swift */,
 				C77CFD941EFD0AF80047F1DC /* EditProfileVC.swift */,
 				C77CFD961EFD0B090047F1DC /* PostVC.swift */,
@@ -141,7 +142,6 @@
 			isa = PBXGroup;
 			children = (
 				C7743D111EFCFD9E00B39FB2 /* Auth.storyboard */,
-				C77CFD9A1EFD0B510047F1DC /* PostAndSearch.storyboard */,
 				C7743D011EFCF6CF00B39FB2 /* Main.storyboard */,
 			);
 			name = Storyboard;
@@ -213,7 +213,6 @@
 				C7743D101EFCF82600B39FB2 /* GoogleService-Info.plist in Resources */,
 				C7743D051EFCF6CF00B39FB2 /* Assets.xcassets in Resources */,
 				C7743D121EFCFD9E00B39FB2 /* Auth.storyboard in Resources */,
-				C77CFD9B1EFD0B510047F1DC /* PostAndSearch.storyboard in Resources */,
 				C7743D031EFCF6CF00B39FB2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,6 +277,7 @@
 				C77CFD911EFD04FE0047F1DC /* FeedVC.swift in Sources */,
 				C77CFD8F1EFD04C20047F1DC /* RegisterVC.swift in Sources */,
 				C7743CFE1EFCF6CF00B39FB2 /* AppDelegate.swift in Sources */,
+				818EF3BE1F02A7C8009F4B19 /* SelectedImageVC.swift in Sources */,
 				C77CFD971EFD0B090047F1DC /* PostVC.swift in Sources */,
 				C77CFD951EFD0AF80047F1DC /* EditProfileVC.swift in Sources */,
 				C77CFD891EFD04090047F1DC /* LoginVC.swift in Sources */,

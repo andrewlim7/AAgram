@@ -75,9 +75,9 @@ class LoginVC: UIViewController {
                 self.myActivityIndicator.stopAnimating()
                 self.emailTextField.text = nil
                 self.passwordTextField.text = nil
+                
             }
         }
-        
     }
     
     @IBAction func signUpButtonTapped(_ sender: Any) {
@@ -124,5 +124,4 @@ class LoginVC: UIViewController {
         present(alertController, animated: true, completion: nil)
         self.myActivityIndicator.stopAnimating()
     }
-
 }

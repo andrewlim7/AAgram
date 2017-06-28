@@ -53,7 +53,6 @@ class LoginVC: UIViewController,FBSDKLoginButtonDelegate {
     }
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-            print("HELLOOOOOOOOOOOOOOO")
         if let error = error {
             print(error.localizedDescription)
             self.fbAlert()

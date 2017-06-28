@@ -67,25 +67,26 @@ class RegisterVC: UIViewController {
         else { return; }
         
         if username == "" {
-            self.usernameAlert()
+            self.warningAlert(warningMessage: "Please enter your username")
             
         } else if password == "" {
-            self.passwordAlert()
+            self.warningAlert(warningMessage: "Please enter your password")
             
         } else if password.characters.count < 6  {
-            self.lessPasswordAlert()
+            self.warningAlert(warningMessage: "Please enter minimum of 6 characters for password")
             
         } else if email == "" {
-            self.emailAlert()
+            self.warningAlert(warningMessage: "Please enter your email")
             
         } else if password != confirmPassword {
-            self.passwordDifferentAlert()
+            self.warningAlert(warningMessage: "Please enter your password and confrim password correctly!")
             
         } else {
             
             Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
                 if let validError = error {
                     print(validError.localizedDescription)
+                    self.warningAlert(warningMessage: "Please enter another email address!")
                     return;
                 }
                 
@@ -119,62 +120,14 @@ class RegisterVC: UIViewController {
         
         view.addSubview(myActivityIndicator)
     }
-    
-    func usernameAlert() {
-        let alertController = UIAlertController(title: "Error", message: "Please enter your username", preferredStyle: .alert)
+
+    func warningAlert(warningMessage: String){
+        let alertController = UIAlertController(title: "Error", message: warningMessage, preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(ok)
         
         present(alertController, animated: true, completion: nil)
         self.myActivityIndicator.stopAnimating()
-    }
-    
-    func emailAlert() {
-        let alertController = UIAlertController(title: "Error", message: "Please enter your email", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(ok)
         
-        present(alertController, animated: true, completion: nil)
-        self.myActivityIndicator.stopAnimating()
-    }
-    
-    func passwordAlert() {
-        let alertController = UIAlertController(title: "Error", message: "Please enter your password", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        
-        alertController.addAction(ok)
-        
-        present(alertController, animated: true, completion: nil)
-        self.myActivityIndicator.stopAnimating()
-    }
-    
-    func lessPasswordAlert() {
-        let alertController = UIAlertController(title: "Error", message: "Please enter minimum of 6 characters for password", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        
-        alertController.addAction(ok)
-        
-        present(alertController, animated: true, completion: nil)
-        self.myActivityIndicator.stopAnimating()
-    }
-    
-    func existEmailAlert() {
-        let alertController = UIAlertController(title: "Error", message: "Please enter another email address!", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        
-        alertController.addAction(ok)
-        
-        present(alertController, animated: true, completion: nil)
-        self.myActivityIndicator.stopAnimating()
-    }
-    
-    func passwordDifferentAlert() {
-        let alertController = UIAlertController(title: "Error", message: "Please enter your password and confrim password correctly!", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        
-        alertController.addAction(ok)
-        
-        present(alertController, animated: true, completion: nil)
-        self.myActivityIndicator.stopAnimating()
     }
 }

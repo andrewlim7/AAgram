@@ -107,7 +107,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="keR-fG-Tnq">
-                                <rect key="frame" x="16" y="78" width="343" height="359"/>
+                                <rect key="frame" x="16" y="108" width="343" height="329"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="z4E-yM-zgF">
@@ -118,10 +118,20 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kKF-pu-aWH">
+                                <rect key="frame" x="275" y="61" width="84" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Done"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Post" image="Photo" selectedImage="Photo" id="8l9-Yd-aLG"/>
+                    <connections>
+                        <outlet property="doneButton" destination="kKF-pu-aWH" id="2Jl-12-YA1"/>
+                        <outlet property="imageView" destination="keR-fG-Tnq" id="yT2-Vh-mYN"/>
+                        <outlet property="textView" destination="z4E-yM-zgF" id="I7O-nO-tQ9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VW4-YR-fxB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

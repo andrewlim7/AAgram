@@ -94,7 +94,7 @@ class RegisterVC: UIViewController {
                 let param : [String : Any] = ["username": username,
                                               "email": email]
                 
-                let ref = Database.database().reference()
+                let ref = Database.database().reference().child("users")
                 ref.child(uid!).setValue(param)
                 
                 //try? Auth.auth().signOut()

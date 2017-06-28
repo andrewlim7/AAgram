@@ -39,7 +39,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let firebaseAuth = Auth.auth()
         let loginManager = FBSDKLoginManager() //FB system logout
         
+        //if firebaseAuth.currentUser != nil {
             do {
+                
                 try firebaseAuth.signOut()  //please ask kh why 2nd logout will reappeared logout
                 loginManager.logOut()
                 
@@ -51,7 +53,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 return
             }
             
-            self.dismiss(animated: true, completion: nil)
+//            self.dismiss(animated: true, completion: nil)
+        //}
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

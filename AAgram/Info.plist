@@ -46,13 +46,7 @@
 	<key>FacebookAppID</key>
 	<string>1879095452357633</string>
 	<key>FacebookDisplayName</key>
-	<string>Andrewlim7</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Select photo to upload</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Select photo to upload</string>
-	<key>NSAppleMusicUsageDescription</key>
-	<string>Select photo to upload</string>
+	<string>AAIG</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>

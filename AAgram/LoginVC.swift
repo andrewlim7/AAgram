@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 import FBSDKLoginKit
 
 class LoginVC: UIViewController,FBSDKLoginButtonDelegate {
@@ -64,12 +65,20 @@ class LoginVC: UIViewController,FBSDKLoginButtonDelegate {
         } else {
             let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
             Auth.auth().signIn(with: credential) { (user, error) in
-                // put all the user detail 
+                // put all the user detail
+//                let uid = Auth.auth().currentUser?.uid
+//                
+//                let param : [String : Any] = ["username": credential.identiy,
+//                                              "email": credential.provider]
+//                
+//                let ref = Database.database().reference().child("users")
+//                ref.child(uid!).setValue(param)
+
    
             }
             
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let mainVC = storyboard.instantiateViewController(withIdentifier: "FeedVC") as! FeedVC
+            let mainVC = storyboard.instantiateViewController(withIdentifier: "TabBarNavi")
             self.present(mainVC, animated: true, completion: nil)
         }
         

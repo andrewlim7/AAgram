@@ -65,16 +65,6 @@ class PostVC: UIViewController,UITabBarControllerDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        let tarBarIndex = tabBarController.selectedIndex
-        if tarBarIndex == 3 {
-            //insert image picker view
-
-            print("TEST")
-        }
-
-    }
     
     func addPictureAndCaption(_ caption: String!, imageURL: String!){
         
@@ -91,8 +81,15 @@ class PostVC: UIViewController,UITabBarControllerDelegate {
                                     "imageURL": validImageURL,
                                     "caption": validCaption]
         
-        let ref = Database.database().reference()
-        ref.child("posts").childByAutoId().setValue(param)
+        let ref = Database.database().reference().child("posts").childByAutoId()
+        ref.setValue(param)
+        
+        let currentPID = ref.key
+        print(currentPID)
+        
+        let updateUserPID = Database.database().reference().child("users").child(uid).child("post")
+        updateUserPID.updateChildValues([currentPID: true])
+        
         textView.text = nil
         
     }
@@ -135,10 +132,7 @@ class PostVC: UIViewController,UITabBarControllerDelegate {
                 self.addPictureAndCaption(self.textView.text, imageURL: imageURL)
             }
             self.isNewPost = true
-            self.tabBarController?.selectedIndex = 0
-            //let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            //let feedVC = storyboard.instantiateViewController(withIdentifier: "TabBarNavi")
-            //self.present(feedVC, animated: true, completion: nil)
+            self.tabBarController?.selectedIndex = 0 //change the tab to main
         }
     }
 }

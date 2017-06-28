@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7VC-sy-2E1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7VC-sy-2E1">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -31,11 +31,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="373" id="qcD-VG-z8i">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="373" id="qcD-VG-z8i" customClass="CustomCell" customModule="AAgram" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="373"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qcD-VG-z8i" id="l6a-MT-N1v">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="373"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="372.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="diamond_K" translatesAutoresizingMaskIntoConstraints="NO" id="UbD-vH-Wbm">
@@ -77,6 +77,12 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="mainImageView" destination="p71-RL-YHo" id="eb3-Tn-Zhi"/>
+                                            <outlet property="profilePicture" destination="UbD-vH-Wbm" id="Fp9-2V-eMb"/>
+                                            <outlet property="textView" destination="6t2-bS-sfG" id="Odf-xO-qfE"/>
+                                            <outlet property="userNameLabel" destination="WU6-rr-xf9" id="67F-Cs-6wG"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

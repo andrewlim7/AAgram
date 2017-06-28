@@ -139,8 +139,6 @@ class PostVC: UIViewController,UITabBarControllerDelegate {
             }
         }
     }
-    
-    
 }
 
 extension PostVC : UIImagePickerControllerDelegate, UINavigationControllerDelegate {

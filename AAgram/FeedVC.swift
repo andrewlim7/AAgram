@@ -22,11 +22,14 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
+    var datas : [Data] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
+        fetchChats()
         // Do any additional setup after loading the view.
     }
 
@@ -57,14 +60,45 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         //}
     }
     
+    func fetchChats() {
+        
+        let ref = Database.database().reference()
+        
+//        let uid = Auth.auth().currentUser?.uid
+        
+        ref.child("posts").observe(.childAdded, with: { (snapshot) in
+            
+            guard let validDictionary = snapshot.value as? [String:Any] else { return }
+            
+            if let data = Data(withDictionary: validDictionary) {
+                
+                self.datas.append(data)
+            }
+            
+            self.tableView.reloadData()
+            
+//            let scrollPoint = CGPoint(x:0, y:self.tableView.contentSize.height - self.tableView.frame.size.height)
+//            self.tableView.setContentOffset(scrollPoint, animated: true)
+            
+        })
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 5
+        return datas.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell
+        
+        let data = datas[indexPath.row]
+        
+        cell.textView?.text = data.caption
+        cell.userNameLabel?.text = data.name
+        
+        cell.mainImageView?.loadImageFromURL(data.imageURL)
+        
         return cell
     }
     
@@ -73,4 +107,26 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return 1
     }
     
+}
+
+extension UIImageView {
+    
+    func loadImageFromURL (_ imageURL: URL?) {
+        
+        guard let validImageURL = imageURL else { return }
+        
+        let urlSession = URLSession(configuration: URLSessionConfiguration.default)
+        
+        let dataTask = urlSession.dataTask(with: validImageURL) { (data, response, error) in
+            
+            if let validData = data {
+                
+                let downloadedImage = UIImage(data: validData)
+                
+                self.image = downloadedImage
+            }
+        }
+        
+        dataTask.resume()
+    }
 }

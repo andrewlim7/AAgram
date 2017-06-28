@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		40EB1471550CFEAF6BF5D9C2 /* Pods_AAgram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B52C4AC1018786A6283514 /* Pods_AAgram.framework */; };
+		812DEA681F0397D600C5755D /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812DEA671F0397D600C5755D /* Data.swift */; };
+		812DEA6A1F039B4300C5755D /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812DEA691F039B4300C5755D /* CustomCell.swift */; };
 		818EF3BE1F02A7C8009F4B19 /* SelectedImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818EF3BD1F02A7C8009F4B19 /* SelectedImageVC.swift */; };
 		C7743CFE1EFCF6CF00B39FB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7743CFD1EFCF6CF00B39FB2 /* AppDelegate.swift */; };
 		C7743D031EFCF6CF00B39FB2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7743D011EFCF6CF00B39FB2 /* Main.storyboard */; };
@@ -26,6 +28,8 @@
 
 /* Begin PBXFileReference section */
 		33DB1A9451C0C4A22EDF7CF1 /* Pods-AAgram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AAgram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AAgram/Pods-AAgram.debug.xcconfig"; sourceTree = "<group>"; };
+		812DEA671F0397D600C5755D /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		812DEA691F039B4300C5755D /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		818EF3BD1F02A7C8009F4B19 /* SelectedImageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedImageVC.swift; sourceTree = "<group>"; };
 		99D54A00CD4F3F3BC4863115 /* Pods-AAgram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AAgram.release.xcconfig"; path = "Pods/Target Support Files/Pods-AAgram/Pods-AAgram.release.xcconfig"; sourceTree = "<group>"; };
 		C7743CFA1EFCF6CF00B39FB2 /* AAgram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AAgram.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +116,8 @@
 		C77CFD8A1EFD04110047F1DC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				812DEA671F0397D600C5755D /* Data.swift */,
+				812DEA691F039B4300C5755D /* CustomCell.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -273,6 +279,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C77CFD991EFD0B140047F1DC /* SearchVC.swift in Sources */,
+				812DEA681F0397D600C5755D /* Data.swift in Sources */,
+				812DEA6A1F039B4300C5755D /* CustomCell.swift in Sources */,
 				C77CFD931EFD07D10047F1DC /* ProfileVC.swift in Sources */,
 				C77CFD911EFD04FE0047F1DC /* FeedVC.swift in Sources */,
 				C77CFD8F1EFD04C20047F1DC /* RegisterVC.swift in Sources */,

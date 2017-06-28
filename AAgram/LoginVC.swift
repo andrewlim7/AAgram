@@ -65,14 +65,37 @@ class LoginVC: UIViewController,FBSDKLoginButtonDelegate {
         } else {
             let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
             Auth.auth().signIn(with: credential) { (user, error) in
-                // put all the user detail
-//                let uid = Auth.auth().currentUser?.uid
-//                
-//                let param : [String : Any] = ["username": credential.identiy,
-//                                              "email": credential.provider]
-//                
-//                let ref = Database.database().reference().child("users")
-//                ref.child(uid!).setValue(param)
+                print("user logged in the firebase")
+                
+                let ref = Database.database().reference(fromURL: "https://aagram-f0ff7.firebaseio.com/")
+                
+                guard let uid = user?.uid else {
+                    return
+                }
+                
+                let userReference = ref.child("users").child(uid)
+                
+                let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id,name,email"])
+                graphRequest.start(completionHandler: { (connection, result, error) in
+                    if error != nil {
+                        print("\(String(describing: error))")
+                    } else {
+                        
+                        let values : [String: Any] = result as! [String : Any]
+                        
+                        userReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
+                            if error != nil {
+                                print("\(String(describing: error))")
+                                return
+                            }
+                            // no error, so it means we've saved the user into our firebase database successfully
+                            print("Save the user successfully into Firebase database")
+
+                        })
+                        
+                        
+                    }
+                })
 
    
             }

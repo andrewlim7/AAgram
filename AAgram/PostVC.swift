@@ -34,6 +34,7 @@ class PostVC: UIViewController,UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         getUsernameFromDB()
+        getFBNameFromDB()
         self.tabBarController?.delegate = self
 
     }
@@ -59,6 +60,17 @@ class PostVC: UIViewController,UITabBarControllerDelegate {
             }
         })
 
+    }
+    
+    func getFBNameFromDB(){
+        let uid = Auth.auth().currentUser?.uid
+        Database.database().reference().child("users").child(uid!).observe(.value, with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String:Any],
+                let name = dictionary["name"] as? String {
+                self.getUsername = name
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {

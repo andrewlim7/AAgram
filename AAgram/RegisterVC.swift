@@ -97,9 +97,9 @@ class RegisterVC: UIViewController {
                 let ref = Database.database().reference()
                 ref.child(uid!).setValue(param)
                 
-                try? Auth.auth().signOut()
+                //try? Auth.auth().signOut()
                 
-                self.navigationController?.popViewController(animated: true)
+                //self.navigationController?.popViewController(animated: true)
                 self.myActivityIndicator.stopAnimating()
                 
                 print("User sign-up successfully! \(user?.uid ?? "")")

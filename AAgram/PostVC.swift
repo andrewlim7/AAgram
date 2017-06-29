@@ -32,12 +32,17 @@ class PostVC: UIViewController,UITabBarControllerDelegate, FusumaDelegate {
     
     var getUsername : String = ""
     var currentTabIndex : Int = 0
+    let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getUsernameFromDB()
         getFBNameFromDB()
+        setupSpinner()
         self.tabBarController?.delegate = self
+        
+        myActivityIndicator.color = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
+        myActivityIndicator.backgroundColor = UIColor.gray
 
     }
     
@@ -51,6 +56,7 @@ class PostVC: UIViewController,UITabBarControllerDelegate, FusumaDelegate {
             fusuma.delegate = self
             //fusuma.hasVideo = true // If you want to let the users allow to use video.
             self.present(fusuma, animated: true, completion:nil)
+            
             
             isNewPost = true
             doneButton.isEnabled = true
@@ -135,10 +141,12 @@ class PostVC: UIViewController,UITabBarControllerDelegate, FusumaDelegate {
         updateUserPID.updateChildValues([currentPID: true])
         
         textView.text = nil
+        imageView.image = nil
         
     }
     
     func doneButtonTapped(_ sender: Any){
+        self.myActivityIndicator.startAnimating()
         self.doneButton.isEnabled = false
         let storageRef = Storage.storage().reference()
         
@@ -177,7 +185,18 @@ class PostVC: UIViewController,UITabBarControllerDelegate, FusumaDelegate {
             }
             self.isNewPost = true
             self.tabBarController?.selectedIndex = 0 //change the tab to main
+            self.myActivityIndicator.stopAnimating()
         }
+    }
+    
+    func setupSpinner(){
+        // Position Activity Indicator in the center of the main view
+        myActivityIndicator.center = view.center
+        
+        // If needed, you can prevent Acivity Indicator from hiding when stopAnimating() is called
+        myActivityIndicator.hidesWhenStopped = true
+        
+        view.addSubview(myActivityIndicator)
     }
 }
 

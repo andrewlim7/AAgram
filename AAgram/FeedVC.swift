@@ -25,6 +25,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var datas : [Data] = []
     
+    var refresher = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.dataSource = self
         fetchChats()
         
-        // Do any additional setup after loading the view.
+        refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refresher.addTarget(self, action: #selector(handleRefresh), for: UIControlEvents.valueChanged)
+        refresher.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
+        tableView.addSubview(refresher)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,6 +51,12 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let currentVC = self.tabBarController?.viewControllers
         let nextVC = currentVC![3] as! PostVC
         nextVC.currentTabIndex = currentIndex
+    }
+    
+    func handleRefresh(){
+        self.datas.sort(by: {$0.timeStamp > $1.timeStamp})
+        refresher.endRefreshing()
+        tableView.reloadData()
     }
     
     func didTapLogoutButton(_ sender:Any){

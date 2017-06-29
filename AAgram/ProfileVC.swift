@@ -125,7 +125,6 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
                 let username = dictionary["username"] as? String ?? "username"
                 
                 self.profileUsername.text = username
-
                 
                 self.profileImgs = []
                 
@@ -133,12 +132,12 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
                     
                     else { return }
                 
+                self.profileImgs.sort(by: {$0.timeStamp > $1.timeStamp})
+                
                 for (key,_) in postDictionary {
                     
                     self.getPost(key)
                 }
-                
-                self.profileImgs.sort(by: {$0.timeStamp > $1.timeStamp})
                 
             }) { (error) in
             

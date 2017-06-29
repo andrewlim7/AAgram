@@ -4,6 +4,12 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>NSCameraUsageDescription</key>
+	<string>USE IT PLEASE</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>USE IT PLEASE</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>USE IT PLEASE</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

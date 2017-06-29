@@ -85,6 +85,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.datas.append(data)
             }
             
+            self.datas.sort(by: {$0.timeStamp > $1.timeStamp})
             self.tableView.reloadData()
             
 //            let scrollPoint = CGPoint(x:0, y:self.tableView.contentSize.height - self.tableView.frame.size.height)
@@ -110,8 +111,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         cell.mainImageView.sd_setImage(with: data.imageURL, placeholderImage: UIImage(named: "placeholder.png"))
 
 //        self.tableView.reloadData()
-        self.datas.sort(by: {$0.timeStamp > $1.timeStamp})
-//        
+//        self.datas.sort(by: {$0.timeStamp > $1.timeStamp})
+//
 //        DispatchQueue.main.async {
 //            self.tableView.reloadData()
 //        }

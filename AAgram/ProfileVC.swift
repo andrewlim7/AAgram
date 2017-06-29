@@ -97,7 +97,7 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         if let user = Auth.auth().currentUser?.uid {
             
             ref.child("users").child(user).observe(.value, with: { (snapshot) in
-                
+
                 guard let dictionary = snapshot.value as? [String:Any] else {
                     return
                 }
@@ -105,8 +105,11 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
                 let username = dictionary["username"] as? String ?? "username"
                 
                 self.profileUsername.text = username
-
-                let postDictionary = dictionary["post"] as! [String:Any]
+                
+                
+                self.profileImgs = []
+                guard let postDictionary = dictionary["post"] as? [String:Any]
+                    else { return }
                 
                 for (key,_) in postDictionary {
                     

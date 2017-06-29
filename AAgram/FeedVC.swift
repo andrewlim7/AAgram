@@ -32,7 +32,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         fetchChats()
-
+        
         // Do any additional setup after loading the view.
     }
 
@@ -107,10 +107,17 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         cell.textView?.text = data.caption
         cell.userNameLabel?.text = data.name
         
-//        cell.mainImageView?.loadImageFromURL(data.imageURL)
         cell.mainImageView.sd_setImage(with: data.imageURL, placeholderImage: UIImage(named: "placeholder.png"))
+
+//        self.tableView.reloadData()
+        self.datas.sort(by: {$0.timeStamp > $1.timeStamp})
+//        
+//        DispatchQueue.main.async {
+//            self.tableView.reloadData()
+//        }
         
         return cell
+
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -120,24 +127,4 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
 }
 
-//extension UIImageView {
-//    
-//    func loadImageFromURL (_ imageURL: URL?) {
-//        
-//        guard let validImageURL = imageURL else { return }
-//        
-//        let urlSession = URLSession(configuration: URLSessionConfiguration.default)
-//        
-//        let dataTask = urlSession.dataTask(with: validImageURL) { (data, response, error) in
-//            
-//            if let validData = data {
-//                
-//                let downloadedImage = UIImage(data: validData)
-//                
-//                self.image = downloadedImage
-//            }
-//        }
-//        
-//        dataTask.resume()
-//    }
-//}
+

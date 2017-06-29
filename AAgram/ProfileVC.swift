@@ -7,17 +7,34 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
+import FirebaseStorage
+import FBSDKLoginKit
+import SDWebImage
 
 class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate {
+    
     @IBOutlet weak var collectionView: UICollectionView!
-
     @IBOutlet weak var editProfileBtn: UIButton!
+    @IBOutlet weak var profileFollowers: UILabel!
+    @IBOutlet weak var profileFollow: UILabel!
+    @IBOutlet weak var profileBio: UILabel!
+    @IBOutlet weak var profileUsername: UILabel!
+    @IBOutlet weak var profileImage: UIImageView!
+    
+    
+    var imgURL: String = ""
+    var profileImgs : [Data] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         collectionView.dataSource = self
         collectionView.delegate = self
-    
+        
+        fetchChats()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,13 +56,17 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 30
+        return profileImgs.count
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ProfileImgCell
+        
+        let data = profileImgs[indexPath.row]
+        
+        cell.profilePostImgCell.sd_setImage(with: data.imageURL, placeholderImage: UIImage(named: "placeholder.png"))
         
         return cell
     }
@@ -66,7 +87,53 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     }
     
     @IBAction func followBtnPressed(_ sender: Any) {
+        
     }
     
+    func fetchChats() {
+        
+        let ref = Database.database().reference()
+        
+        if let user = Auth.auth().currentUser?.uid {
+            
+            ref.child("users").child(user).observe(.value, with: { (snapshot) in
+                
+                guard let dictionary = snapshot.value as? [String:Any] else {
+                    return
+                }
+                
+                let username = dictionary["username"] as? String ?? "username"
+                
+                self.profileUsername.text = username
 
+                let postDictionary = dictionary["post"] as! [String:Any]
+                
+                for (key,_) in postDictionary {
+                    
+                    self.getPost(key)
+                }
+                
+            }) { (error) in
+            
+            print(error.localizedDescription)
+                
+            return
+        }
+    }
+}
+    
+    func getPost(_ postID: String) {
+        
+        let ref = Database.database().reference()
+        ref.child("posts").child(postID).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            guard let validDictionary = snapshot.value as? [String:Any] else { return }
+            if let data = Data(withDictionary: validDictionary) {
+                self.profileImgs.append(data)
+                print(snapshot)
+            }
+            self.collectionView.reloadData()
+        })
+
+    }
 }

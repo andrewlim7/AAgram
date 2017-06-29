@@ -9,11 +9,26 @@
 import UIKit
 
 class SelectedImageVC: UIViewController {
-
+    
+    
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var captionTextView: UITextView!
+    @IBOutlet weak var selectedImgView: UIImageView!
+    
+    var selectedName: String = ""
+    var selectedCaption: String = ""
+    var selectedImg: UIImage!
+    
+    static let CellIdentifer = "SelectedImageVC"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
+        usernameLabel.text = selectedName
+        captionTextView.text = selectedCaption
+        selectedImgView.image = selectedImg
+        
     }
 
     override func didReceiveMemoryWarning() {

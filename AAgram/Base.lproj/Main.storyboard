@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7VC-sy-2E1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7VC-sy-2E1">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -35,7 +35,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="390"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qcD-VG-z8i" id="l6a-MT-N1v">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="390"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="389.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="diamond_K" translatesAutoresizingMaskIntoConstraints="NO" id="UbD-vH-Wbm">
@@ -68,13 +68,11 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3n-Ru-cCM">
-                                                    <rect key="frame" x="327" y="321" width="40" height="21"/>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hW-Bk-hyh">
+                                                    <rect key="frame" x="293" y="321" width="64" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <state key="normal" title="Likes"/>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -267,10 +265,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="captionTextView" destination="QJd-ee-c6E" id="yzf-bs-cbl"/>
+                        <outlet property="selectedImgView" destination="vA2-L3-8UZ" id="pvS-C3-V4L"/>
+                        <outlet property="usernameLabel" destination="Cjl-7G-RNo" id="YcT-xY-gny"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r20-m8-rOb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4773.6000000000004" y="737.18140929535241"/>
+            <point key="canvasLocation" x="2951" y="-706"/>
         </scene>
         <!--Profile-->
         <scene sceneID="Hg0-x7-W1r">
@@ -401,6 +404,7 @@
                         <outlet property="profileFollowers" destination="JV6-cO-sSp" id="4Zf-mV-Ifm"/>
                         <outlet property="profileImage" destination="SAw-Yn-x1b" id="lLN-lo-nhL"/>
                         <outlet property="profileUsername" destination="3P6-Re-nn3" id="bOT-eO-R8i"/>
+                        <segue destination="D86-Gt-eM6" kind="show" identifier="selectedSegue" id="ki2-JV-I0V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qgg-fT-UJx" userLabel="First Responder" sceneMemberID="firstResponder"/>

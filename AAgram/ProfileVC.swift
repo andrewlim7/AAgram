@@ -27,6 +27,10 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     var imgURL: String = ""
     var profileImgs : [Data] = []
     
+    var selectedName: String = ""
+    var selectedCaption: String = ""
+    var selectedImg: UIImage!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -73,9 +77,12 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let vc = storyboard.instantiateViewController(withIdentifier: "SelectedImageVC")
-        self.present(vc, animated: true, completion: nil)
+        self.performSegue(withIdentifier: "selectedSegue", sender: self)
+        
+        let cell = collectionView.cellForItem(at: indexPath) as! ProfileImgCell
+        selectedImg = cell.profilePostImgCell.image
+        selectedName = profileUsername.text!
+
     }
 
     @IBAction func editProfileBtn(_ sender: Any) {
@@ -90,6 +97,18 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "selectedSegue" {
+            
+            let destinationViewController = segue.destination as! SelectedImageVC
+            
+            destinationViewController.selectedImg = selectedImg
+            destinationViewController.selectedName = selectedName
+            destinationViewController.selectedCaption = selectedCaption
+        }
+    }
+    
     func fetchChats() {
         
         let ref = Database.database().reference()
@@ -99,22 +118,27 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
             ref.child("users").child(user).observe(.value, with: { (snapshot) in
 
                 guard let dictionary = snapshot.value as? [String:Any] else {
+                    
                     return
                 }
                 
                 let username = dictionary["username"] as? String ?? "username"
                 
                 self.profileUsername.text = username
-                
+
                 
                 self.profileImgs = []
+                
                 guard let postDictionary = dictionary["post"] as? [String:Any]
+                    
                     else { return }
                 
                 for (key,_) in postDictionary {
                     
                     self.getPost(key)
                 }
+                
+                self.profileImgs.sort(by: {$0.timeStamp > $1.timeStamp})
                 
             }) { (error) in
             
@@ -128,15 +152,19 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     func getPost(_ postID: String) {
         
         let ref = Database.database().reference()
+        
         ref.child("posts").child(postID).observeSingleEvent(of: .value, with: { (snapshot) in
             
             guard let validDictionary = snapshot.value as? [String:Any] else { return }
+            
             if let data = Data(withDictionary: validDictionary) {
+                
                 self.profileImgs.append(data)
-                print(snapshot)
             }
+            
             self.collectionView.reloadData()
         })
 
     }
+    
 }

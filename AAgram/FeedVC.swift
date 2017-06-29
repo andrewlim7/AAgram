@@ -11,6 +11,7 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 import FBSDKLoginKit
+import SDWebImage
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -106,7 +107,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         cell.textView?.text = data.caption
         cell.userNameLabel?.text = data.name
         
-        cell.mainImageView?.loadImageFromURL(data.imageURL)
+//        cell.mainImageView?.loadImageFromURL(data.imageURL)
+        cell.mainImageView.sd_setImage(with: data.imageURL, placeholderImage: UIImage(named: "placeholder.png"))
         
         return cell
     }
@@ -118,24 +120,24 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
 }
 
-extension UIImageView {
-    
-    func loadImageFromURL (_ imageURL: URL?) {
-        
-        guard let validImageURL = imageURL else { return }
-        
-        let urlSession = URLSession(configuration: URLSessionConfiguration.default)
-        
-        let dataTask = urlSession.dataTask(with: validImageURL) { (data, response, error) in
-            
-            if let validData = data {
-                
-                let downloadedImage = UIImage(data: validData)
-                
-                self.image = downloadedImage
-            }
-        }
-        
-        dataTask.resume()
-    }
-}
+//extension UIImageView {
+//    
+//    func loadImageFromURL (_ imageURL: URL?) {
+//        
+//        guard let validImageURL = imageURL else { return }
+//        
+//        let urlSession = URLSession(configuration: URLSessionConfiguration.default)
+//        
+//        let dataTask = urlSession.dataTask(with: validImageURL) { (data, response, error) in
+//            
+//            if let validData = data {
+//                
+//                let downloadedImage = UIImage(data: validData)
+//                
+//                self.image = downloadedImage
+//            }
+//        }
+//        
+//        dataTask.resume()
+//    }
+//}

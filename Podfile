@@ -14,5 +14,6 @@ target 'AAgram' do
   pod 'FBSDKCoreKit'
   pod 'FBSDKShareKit'
   pod 'FBSDKLoginKit'
+  pod 'SDWebImage'
 
 end

@@ -32,9 +32,6 @@ class CommentVC: UIViewController {
     }
     
     
-    
-    
-    
 }
 
 extension CommentVC : UITableViewDataSource {

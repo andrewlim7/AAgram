@@ -15,6 +15,7 @@ var userID: String
 var timeStamp: Date
 var caption: String?
 var imageURL: URL?
+    
 
 
 init?(withDictionary dictionary: [String: Any]) {

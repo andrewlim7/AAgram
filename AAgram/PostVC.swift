@@ -10,12 +10,14 @@ import UIKit
 import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
+import Fusuma
 
-class PostVC: UIViewController,UITabBarControllerDelegate {
-    
+class PostVC: UIViewController,UITabBarControllerDelegate, FusumaDelegate {
+
     @IBOutlet weak var doneButton: UIButton!{
         didSet{
             doneButton.addTarget(self, action: #selector(doneButtonTapped(_:)), for: .touchUpInside)
+            doneButton.isEnabled = false
         }
     }
     @IBOutlet weak var imageView: UIImageView!
@@ -26,7 +28,7 @@ class PostVC: UIViewController,UITabBarControllerDelegate {
         }
     }
     
-    var isNewPost : Bool = true
+    var isNewPost : Bool = false
     
     var getUsername : String = ""
     var currentTabIndex : Int = 0
@@ -40,13 +42,43 @@ class PostVC: UIViewController,UITabBarControllerDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if isNewPost == true {
-            let pickerController = UIImagePickerController()
-            pickerController.delegate = self
-            present(pickerController, animated: true, completion: nil)
-            isNewPost = false
+        if isNewPost != true {
+//            let pickerController = UIImagePickerController()
+//            pickerController.delegate = self
+//            present(pickerController, animated: true, completion: nil)
+            
+            let fusuma = FusumaViewController()
+            fusuma.delegate = self
+            //fusuma.hasVideo = true // If you want to let the users allow to use video.
+            self.present(fusuma, animated: true, completion:nil)
+            
+            isNewPost = true
+            doneButton.isEnabled = true
         }
 
+    }
+    
+    func fusumaImageSelected(_ image: UIImage, source: FusumaMode) {
+        imageView.image = image
+    }
+    
+    func fusumaMultipleImageSelected(_ images: [UIImage], source: FusumaMode) {
+        
+    }
+    
+    func fusumaVideoCompleted(withFileURL fileURL: URL) {
+        
+    }
+    
+    func fusumaCameraRollUnauthorized() {
+        
+    }
+    
+    func fusumaClosed() {
+        isNewPost = false
+        dismiss(animated: true, completion: nil)
+        self.tabBarController?.selectedIndex = self.currentTabIndex //please ask kh for the dismiss problem
+        
     }
     
     func getUsernameFromDB(){
@@ -149,25 +181,25 @@ class PostVC: UIViewController,UITabBarControllerDelegate {
     }
 }
 
-extension PostVC : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    //media is album , photo is picture. rmb to allow it in plist
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) { //cancel button in photo
-        isNewPost = true
-        dismiss(animated: true, completion: nil)
-        self.tabBarController?.selectedIndex = self.currentTabIndex
-
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
-        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        
-        self.imageView.image = selectedImage
-        self.doneButton.isEnabled = true
-        
-        dismiss(animated: true, completion: nil)
-        
-        
-    }
-}
+//extension PostVC : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+//    
+//    //media is album , photo is picture. rmb to allow it in plist
+//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) { //cancel button in photo
+//        isNewPost = true
+//        dismiss(animated: true, completion: nil)
+//        self.tabBarController?.selectedIndex = self.currentTabIndex
+//
+//    }
+//    
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+//        
+//        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+//        
+//        self.imageView.image = selectedImage
+//        self.doneButton.isEnabled = true
+//        
+//        dismiss(animated: true, completion: nil)
+//        
+//        
+//    }
+//}

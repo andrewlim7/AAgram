@@ -75,7 +75,7 @@ class LoginVC: UIViewController,FBSDKLoginButtonDelegate {
                 
                 let userReference = ref.child("users").child(uid)
                 
-                let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id,name,email"])
+                let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "name,email"])
                 graphRequest.start(completionHandler: { (connection, result, error) in
                     if error != nil {
                         print("\(String(describing: error))")

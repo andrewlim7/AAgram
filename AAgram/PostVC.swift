@@ -53,7 +53,6 @@ class PostVC: UIViewController,UITabBarControllerDelegate, FusumaDelegate, UITex
         getUsernameFromDB()
         getFBNameFromDB()
         setupSpinner()
-        self.tabBarController?.delegate = self
         
         myActivityIndicator.color = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
         myActivityIndicator.backgroundColor = UIColor.gray

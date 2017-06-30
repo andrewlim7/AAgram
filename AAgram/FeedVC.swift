@@ -39,6 +39,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITa
         refresher.addTarget(self, action: #selector(handleRefresh), for: UIControlEvents.valueChanged)
         refresher.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
         tableView.addSubview(refresher)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -102,7 +103,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITa
             }
             
             self.datas.sort(by: {$0.timeStamp > $1.timeStamp})
-            
             self.tableView.reloadData()
             
         })

@@ -28,7 +28,14 @@ class PostVC: UIViewController,UITabBarControllerDelegate, FusumaDelegate {
         }
     }
     
-    var isNewPost : Bool = false
+    @IBOutlet weak var reselectImage: UIButton! {
+        didSet{
+            reselectImage.addTarget(self, action: #selector(reselectImageButton(_:)), for: .touchUpInside)
+        }
+    }
+    
+    var isNewPost : Bool = true
+    var isReEditPost : Bool = false
     
     var getUsername : String = ""
     var currentTabIndex : Int = 0
@@ -88,7 +95,7 @@ class PostVC: UIViewController,UITabBarControllerDelegate, FusumaDelegate {
 
     
     override func viewWillAppear(_ animated: Bool) {
-        if isNewPost != true {
+        if isNewPost == true {
 //            let pickerController = UIImagePickerController()
 //            pickerController.delegate = self
 //            present(pickerController, animated: true, completion: nil)
@@ -98,15 +105,30 @@ class PostVC: UIViewController,UITabBarControllerDelegate, FusumaDelegate {
             //fusuma.hasVideo = true // If you want to let the users allow to use video.
             self.present(fusuma, animated: true, completion:nil)
             
-            
-            isNewPost = true
+            isNewPost = false
             doneButton.isEnabled = true
         }
 
     }
     
+    func reselectImageButton(_ sender:Any){
+        
+        if isNewPost == false {
+            let fusuma = FusumaViewController()
+            fusuma.delegate = self
+            self.present(fusuma, animated: true, completion:nil)
+            
+            //isNewPost = true // this cause the whole problem, will present twice
+            doneButton.isEnabled = true
+            isReEditPost = true
+        }
+    }
+    
     func fusumaImageSelected(_ image: UIImage, source: FusumaMode) {
         imageView.image = image
+        
+        isReEditPost = false
+
     }
     
     func fusumaMultipleImageSelected(_ images: [UIImage], source: FusumaMode) {
@@ -128,11 +150,18 @@ class PostVC: UIViewController,UITabBarControllerDelegate, FusumaDelegate {
     }
     
     func fusumaClosed() {
-        print("closed")
-        isNewPost = false
-        dismiss(animated: true, completion: nil)
-        self.tabBarController?.selectedIndex = self.currentTabIndex //please ask kh for the dismiss problem
+        if isReEditPost == true {
+            dismiss(animated: true, completion: nil)
+            isReEditPost = false
+        } else {
+            print("closed")
+            isNewPost = true
+            imageView.image = nil
+            dismiss(animated: true, completion: nil)
+            self.tabBarController?.selectedIndex = self.currentTabIndex //please ask kh for the dismiss problem
+        }
         
+
     }
     
     func getUsernameFromDB(){

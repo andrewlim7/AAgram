@@ -37,8 +37,6 @@ class LoginVC: UIViewController,FBSDKLoginButtonDelegate {
             fbLoginButton.delegate = self
         }
     }
-
-    
     
     let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
 
@@ -49,6 +47,10 @@ class LoginVC: UIViewController,FBSDKLoginButtonDelegate {
     
         myActivityIndicator.color = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
         myActivityIndicator.backgroundColor = UIColor.gray
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
     override func didReceiveMemoryWarning() {

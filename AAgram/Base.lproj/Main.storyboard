@@ -128,11 +128,17 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Done"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Fg-bA-diT">
+                                <rect key="frame" x="22" y="60" width="84" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="X"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Post" image="Photo" selectedImage="Photo" id="8l9-Yd-aLG"/>
                     <connections>
+                        <outlet property="dismissButton" destination="2Fg-bA-diT" id="uHK-BJ-xdu"/>
                         <outlet property="doneButton" destination="kKF-pu-aWH" id="2Jl-12-YA1"/>
                         <outlet property="imageView" destination="keR-fG-Tnq" id="yT2-Vh-mYN"/>
                         <outlet property="textView" destination="z4E-yM-zgF" id="I7O-nO-tQ9"/>

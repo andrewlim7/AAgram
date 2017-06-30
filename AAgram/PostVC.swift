@@ -43,8 +43,49 @@ class PostVC: UIViewController,UITabBarControllerDelegate, FusumaDelegate {
         
         myActivityIndicator.color = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
         myActivityIndicator.backgroundColor = UIColor.gray
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        self.textView.delegate = self
 
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        self.view.endEditing(true)
+    }
+    
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        
+        textView.resignFirstResponder()
+        
+        return true
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            
+            if self.view.frame.origin.y == 0 {
+                
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            
+            if self.view.frame.origin.y != 0 {
+                
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
+        
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         if isNewPost != true {
@@ -150,6 +191,13 @@ class PostVC: UIViewController,UITabBarControllerDelegate, FusumaDelegate {
         textView.text = nil
         imageView.image = nil
         
+    }
+    
+    func dismissButtonTapped(_ sender: Any){
+        
+        let fusuma = FusumaViewController()
+        fusuma.delegate = self
+        self.present(fusuma, animated: true, completion:nil)
     }
     
     func doneButtonTapped(_ sender: Any){

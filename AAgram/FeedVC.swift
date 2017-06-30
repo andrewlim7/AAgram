@@ -85,21 +85,23 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         let ref = Database.database().reference()
         
-//        let uid = Auth.auth().currentUser?.uid
-        
         ref.child("posts").observe(.childAdded, with: { (snapshot) in
             
             guard let validDictionary = snapshot.value as? [String:Any] else { return }
             
             if let data = Data(withDictionary: validDictionary) {
-                
-                self.datas.append(data)
+ 
+                 self.datas.append(data)
             }
             
             self.datas.sort(by: {$0.timeStamp > $1.timeStamp})
+            
             self.tableView.reloadData()
             
+            self.tableView.setContentOffset(CGPoint.zero, animated: true)
+            
         })
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

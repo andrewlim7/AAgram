@@ -101,17 +101,6 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "selectedSegue" {
-            
-            let destinationViewController = segue.destination as! SelectedImageVC
-            
-            destinationViewController.selectedImg = selectedImg
-            destinationViewController.selectedName = selectedName
-            destinationViewController.selectedCaption = selectedCaption
-        }
-    }
     
     func fetchChats() {
         
@@ -127,10 +116,10 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
                 }
                 
                 let username = dictionary["username"] as? String ?? "username"
-                let fbUsername = dictionary["name"] as? String
+//                let fbUsername = dictionary["name"] as? String
                 
                 self.profileUsername.text = username
-                self.profileUsername.text = fbUsername
+//                self.profileUsername.text = fbUsername
                 
                 self.profileImgs = []
                 

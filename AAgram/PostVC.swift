@@ -12,7 +12,7 @@ import FirebaseStorage
 import FirebaseDatabase
 import Fusuma
 
-class PostVC: UIViewController,UITabBarControllerDelegate, FusumaDelegate {
+class PostVC: UIViewController,UITabBarControllerDelegate, FusumaDelegate, UITextViewDelegate {
 
     @IBOutlet weak var doneButton: UIButton!{
         didSet{
@@ -50,11 +50,6 @@ class PostVC: UIViewController,UITabBarControllerDelegate, FusumaDelegate {
         
         myActivityIndicator.color = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
         myActivityIndicator.backgroundColor = UIColor.gray
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
-        self.textView.delegate = self
 
     }
     
@@ -108,6 +103,11 @@ class PostVC: UIViewController,UITabBarControllerDelegate, FusumaDelegate {
             isNewPost = false
             doneButton.isEnabled = true
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        self.textView.delegate = self
 
     }
     

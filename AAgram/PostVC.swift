@@ -14,6 +14,13 @@ import Fusuma
 
 class PostVC: UIViewController,UITabBarControllerDelegate, FusumaDelegate, UITextViewDelegate {
 
+    @IBOutlet weak var cancelButton: UIButton!{
+        didSet{
+            cancelButton.addTarget(self, action: #selector(cancelButtonTapped(_:)), for: .touchUpInside)
+        }
+    }
+    
+    
     @IBOutlet weak var doneButton: UIButton!{
         didSet{
             doneButton.addTarget(self, action: #selector(doneButtonTapped(_:)), for: .touchUpInside)
@@ -87,7 +94,14 @@ class PostVC: UIViewController,UITabBarControllerDelegate, FusumaDelegate, UITex
         }
         
     }
-
+    
+    func cancelButtonTapped(_ sender:Any){
+        print("closed")
+        isNewPost = true
+        imageView.image = nil
+        dismiss(animated: true, completion: nil)
+        self.tabBarController?.selectedIndex = self.currentTabIndex
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         if isNewPost == true {
@@ -158,7 +172,7 @@ class PostVC: UIViewController,UITabBarControllerDelegate, FusumaDelegate, UITex
             isNewPost = true
             imageView.image = nil
             dismiss(animated: true, completion: nil)
-            self.tabBarController?.selectedIndex = self.currentTabIndex //please ask kh for the dismiss problem
+            self.tabBarController?.selectedIndex = self.currentTabIndex
         }
         
 

@@ -13,7 +13,7 @@ import FirebaseStorage
 import FBSDKLoginKit
 import SDWebImage
 
-class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITabBarControllerDelegate {
 
     @IBOutlet weak var logoutButton: UIButton! {
         didSet{
@@ -32,13 +32,13 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
         fetchChats()
         
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refresher.addTarget(self, action: #selector(handleRefresh), for: UIControlEvents.valueChanged)
         refresher.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
         tableView.addSubview(refresher)
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,6 +51,13 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let currentVC = self.tabBarController?.viewControllers
         let nextVC = currentVC![3] as! PostVC
         nextVC.currentTabIndex = currentIndex
+        self.tabBarController?.delegate = self
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        
+        self.tableView.setContentOffset(CGPoint.zero, animated: true)
+
     }
     
     func handleRefresh(){
@@ -97,8 +104,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             self.datas.sort(by: {$0.timeStamp > $1.timeStamp})
             
             self.tableView.reloadData()
-            
-            self.tableView.setContentOffset(CGPoint.zero, animated: true)
             
         })
 

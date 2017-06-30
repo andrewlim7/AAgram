@@ -99,9 +99,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             self.datas.sort(by: {$0.timeStamp > $1.timeStamp})
             self.tableView.reloadData()
             
-//            let scrollPoint = CGPoint(x:0, y:self.tableView.contentSize.height - self.tableView.frame.size.height)
-//            self.tableView.setContentOffset(scrollPoint, animated: true)
-            
         })
     }
     
@@ -120,13 +117,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         cell.userNameLabel?.text = data.name
         
         cell.mainImageView.sd_setImage(with: data.imageURL, placeholderImage: UIImage(named: "placeholder.png"))
-
-//        self.tableView.reloadData()
-//        self.datas.sort(by: {$0.timeStamp > $1.timeStamp})
-//
-//        DispatchQueue.main.async {
-//            self.tableView.reloadData()
-//        }
         
         return cell
 

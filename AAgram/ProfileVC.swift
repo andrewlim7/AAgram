@@ -76,12 +76,16 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        self.performSegue(withIdentifier: "selectedSegue", sender: self)
+                
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: "SelectedImageVC") as! SelectedImageVC
         
         let cell = collectionView.cellForItem(at: indexPath) as! ProfileImgCell
-        selectedImg = cell.profilePostImgCell.image
-        selectedName = profileUsername.text!
+        
+        vc.selectedImg = cell.profilePostImgCell.image
+        vc.selectedName = profileUsername.text!
+        
+        self.present(vc, animated: true, completion: nil)
 
     }
 

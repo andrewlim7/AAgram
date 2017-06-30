@@ -127,8 +127,10 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
                 }
                 
                 let username = dictionary["username"] as? String ?? "username"
+                let fbUsername = dictionary["name"] as? String
                 
                 self.profileUsername.text = username
+                self.profileUsername.text = fbUsername
                 
                 self.profileImgs = []
                 

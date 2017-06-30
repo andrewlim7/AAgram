@@ -80,7 +80,14 @@ class PostVC: UIViewController,UITabBarControllerDelegate, FusumaDelegate {
         
     }
     
+
+    func fusumaWillClosed() {
+        print("Will close")
+        
+    }
+    
     func fusumaClosed() {
+        print("closed")
         isNewPost = false
         dismiss(animated: true, completion: nil)
         self.tabBarController?.selectedIndex = self.currentTabIndex //please ask kh for the dismiss problem

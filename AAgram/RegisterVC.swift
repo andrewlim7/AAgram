@@ -156,7 +156,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                         
                         let param : [String : Any] = ["username": username,
                                                       "email": email,
-                                                      "profileURL": imageURL]
+                                                      "profileImageURL": imageURL]
                         
                         let ref = Database.database().reference().child("users")
                         ref.child(uid).setValue(param)

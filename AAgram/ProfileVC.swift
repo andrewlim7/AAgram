@@ -117,7 +117,7 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
                 }
                 
                 let username = dictionary["username"] as? String ?? dictionary["name"]
-                let profileURL = dictionary["profileURL"] as? URL // help me fix this
+                let profileURL = dictionary["profileImageURL"] as? URL // help me fix this
                 
                 self.profileUsername.text = username as? String
                 self.profileImage.sd_setImage(with: profileURL, placeholderImage: UIImage(named: "placeholder.png")) // this is to load the image

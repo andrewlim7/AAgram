@@ -9,30 +9,35 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
 
-class RegisterVC: UIViewController {
+class RegisterVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var usernameTextField: UITextField! {
         didSet{
             usernameTextField.placeholder = "Insert Username"
+            usernameTextField.delegate = self
         }
     }
     
     @IBOutlet weak var emailTextField: UITextField! {
         didSet{
             emailTextField.placeholder = "Insert Email"
+            emailTextField.delegate = self
         }
     }
     
     @IBOutlet weak var passwordTextField: UITextField! {
         didSet{
             passwordTextField.isSecureTextEntry = true
+            passwordTextField.delegate = self
         }
     }
     
     @IBOutlet weak var confirmPasswordTextField: UITextField! {
         didSet{
             confirmPasswordTextField.isSecureTextEntry = true
+            confirmPasswordTextField.delegate = self
         }
     }
     
@@ -42,7 +47,16 @@ class RegisterVC: UIViewController {
         }
     }
     
+    @IBOutlet weak var imageView: UIImageView!
+    
+    @IBOutlet weak var selectProfileButton: UIButton! {
+        didSet{
+            selectProfileButton.addTarget(self, action: #selector(tapSelectProfileButton(_:)), for: .touchUpInside)
+        }
+    }
+    
     let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+    var isImageSelected : Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +68,25 @@ class RegisterVC: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        return true
+    }
+    
+    func tapSelectProfileButton(_ sender : Any){
+        
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        present(pickerController, animated: true, completion: nil)
+        
     }
     
     func didTapSignUpButton(_ sender: Any){
@@ -81,6 +114,9 @@ class RegisterVC: UIViewController {
         } else if password != confirmPassword {
             self.warningAlert(warningMessage: "Please enter your password and confrim password correctly!")
             
+        } else if isImageSelected == false {
+            self.warningAlert(warningMessage: "Please select profile picture!")
+            
         } else {
             
             Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
@@ -92,11 +128,40 @@ class RegisterVC: UIViewController {
                 
                 guard let uid = Auth.auth().currentUser?.uid else {return}
                 
-                let param : [String : Any] = ["username": username,
-                                              "email": email]
+                let storageRef = Storage.storage().reference()
                 
-                let ref = Database.database().reference().child("users")
-                ref.child(uid).setValue(param)
+                let metadata = StorageMetadata()
+                metadata.contentType = "image/jpg"
+                
+                let data = UIImageJPEGRepresentation(self.imageView.image!, 0.8)
+                
+                storageRef.child("\(uid).jpg").putData(data!, metadata: metadata) { (newMeta, error) in
+                    if (error != nil) {
+                        // Uh-oh, an error occurred!
+                        print(error!)
+                    } else {
+                        
+                        defer{
+                            self.dismiss(animated: true, completion: nil) //so the return function will return this
+                        }
+                        
+                        if let foundError = error {
+                            print(foundError.localizedDescription)
+                            return
+                        }
+                        
+                        guard let imageURL = newMeta?.downloadURLs?.first?.absoluteString else {
+                            return
+                        }
+                        
+                        let param : [String : Any] = ["username": username,
+                                                      "email": email,
+                                                      "profileURL": imageURL]
+                        
+                        let ref = Database.database().reference().child("users")
+                        ref.child(uid).setValue(param)
+                    }
+                }
                 
                 //try? Auth.auth().signOut()
                 
@@ -129,5 +194,26 @@ class RegisterVC: UIViewController {
         present(alertController, animated: true, completion: nil)
         self.myActivityIndicator.stopAnimating()
         
+    }
+}
+
+extension RegisterVC : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+    //media is album , photo is picture. rmb to allow it in plist
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) { //cancel button in photo
+        dismiss(animated: true, completion: nil)
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+
+        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+
+        self.imageView.image = selectedImage
+        
+        self.isImageSelected = true
+
+        dismiss(animated: true, completion: nil)
+
+
     }
 }

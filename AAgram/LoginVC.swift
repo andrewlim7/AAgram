@@ -11,11 +11,12 @@ import FirebaseAuth
 import FirebaseDatabase
 import FBSDKLoginKit
 
-class LoginVC: UIViewController,FBSDKLoginButtonDelegate {
+class LoginVC: UIViewController,FBSDKLoginButtonDelegate, UITextFieldDelegate{
     
     @IBOutlet weak var emailTextField: UITextField! {
         didSet{
-           emailTextField.placeholder = "Insert email address"
+            emailTextField.placeholder = "Insert email address"
+            emailTextField.delegate = self
         }
     }
     
@@ -23,6 +24,7 @@ class LoginVC: UIViewController,FBSDKLoginButtonDelegate {
         didSet{
             passwordTextField.placeholder = "Insert password"
             passwordTextField.isSecureTextEntry = true
+            passwordTextField.delegate = self
         }
     }
     
@@ -56,6 +58,17 @@ class LoginVC: UIViewController,FBSDKLoginButtonDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        return true
     }
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {

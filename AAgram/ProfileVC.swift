@@ -72,6 +72,7 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         
         cell.profilePostImgCell.sd_setImage(with: data.imageURL, placeholderImage: UIImage(named: "placeholder.png"))
         
+        
         return cell
     }
     
@@ -116,8 +117,10 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
                 }
                 
                 let username = dictionary["username"] as? String ?? dictionary["name"]
+                let profileURL = dictionary["profileURL"] as? URL // help me fix this
                 
                 self.profileUsername.text = username as? String
+                self.profileImage.sd_setImage(with: profileURL, placeholderImage: UIImage(named: "placeholder.png")) // this is to load the image
                 
                 self.profileImgs = []
                 

@@ -26,7 +26,7 @@ class ProfileData{
 //        self.userID = validUser
         self.name = validName
         
-        if let validImageURL = dictionary["imageURL"] as? String {
+        if let validImageURL = dictionary["profileURL"] as? String {
             
             self.imageURL = URL(string: validImageURL)
         }

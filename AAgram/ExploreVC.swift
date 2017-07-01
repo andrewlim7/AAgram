@@ -25,6 +25,10 @@ class ExploreVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         retrieveUsers()
+        
+        
+        self.navigationController?.isNavigationBarHidden = false
+        self.tabBarController?.tabBar.isHidden = true
 
         
     }
@@ -58,6 +62,7 @@ extension ExploreVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         let currentRow = indexPath.row
@@ -66,6 +71,18 @@ extension ExploreVC : UITableViewDelegate, UITableViewDataSource {
 //        cell.detailTextLabel?.text = userLists[currentRow].userID
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileVC
+        
+        let currentRow = indexPath.row
+        
+        vc.profileUsername.text = userLists[currentRow].name
+        
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     

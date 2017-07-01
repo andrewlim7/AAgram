@@ -58,12 +58,15 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITa
         let nextVC = currentVC![3] as! PostVC
         nextVC.currentTabIndex = currentIndex
         self.tabBarController?.delegate = self
+        
+        self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     func didTapUserButton(_ sender : Any){
-//        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-//        let exploreVC = storyboard.instantiateViewController(withIdentifier: "ExploreVC")
-//        self.navigationController?.pushViewController(exploreVC, animated: true)
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let exploreVC = storyboard.instantiateViewController(withIdentifier: "ExploreVC") as! ExploreVC
+        self.navigationController?.pushViewController(exploreVC, animated: true)
         
     }
     

@@ -28,6 +28,8 @@
 		C77CFD951EFD0AF80047F1DC /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77CFD941EFD0AF80047F1DC /* EditProfileVC.swift */; };
 		C77CFD971EFD0B090047F1DC /* PostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77CFD961EFD0B090047F1DC /* PostVC.swift */; };
 		C77CFD991EFD0B140047F1DC /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77CFD981EFD0B140047F1DC /* SearchVC.swift */; };
+		C790D3311F06A4BF00BED2E7 /* ExploreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C790D3301F06A4BF00BED2E7 /* ExploreVC.swift */; };
+		C790D3331F07771A00BED2E7 /* ProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C790D3321F07771A00BED2E7 /* ProfileData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +57,8 @@
 		C77CFD941EFD0AF80047F1DC /* EditProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		C77CFD961EFD0B090047F1DC /* PostVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostVC.swift; sourceTree = "<group>"; };
 		C77CFD981EFD0B140047F1DC /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		C790D3301F06A4BF00BED2E7 /* ExploreVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreVC.swift; sourceTree = "<group>"; };
+		C790D3321F07771A00BED2E7 /* ProfileData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileData.swift; sourceTree = "<group>"; };
 		E4B52C4AC1018786A6283514 /* Pods_AAgram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AAgram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -125,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				812DEA671F0397D600C5755D /* Data.swift */,
+				C790D3321F07771A00BED2E7 /* ProfileData.swift */,
 				812DEA691F039B4300C5755D /* CustomCell.swift */,
 				812DEA6B1F04914D00C5755D /* ProfileImgCell.swift */,
 			);
@@ -147,6 +152,7 @@
 				C77CFD8E1EFD04C20047F1DC /* RegisterVC.swift */,
 				C77CFD901EFD04FE0047F1DC /* FeedVC.swift */,
 				818EF3BD1F02A7C8009F4B19 /* SelectedImageVC.swift */,
+				C790D3301F06A4BF00BED2E7 /* ExploreVC.swift */,
 				C77CFD921EFD07D10047F1DC /* ProfileVC.swift */,
 				C77CFD941EFD0AF80047F1DC /* EditProfileVC.swift */,
 				C77CFD961EFD0B090047F1DC /* PostVC.swift */,
@@ -200,7 +206,7 @@
 				TargetAttributes = {
 					C7743CF91EFCF6CF00B39FB2 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 3F9ZJ33XLL;
+						DevelopmentTeam = DQCNUZZSN6;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -252,7 +258,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		5352923CA37395034330EF0E /* [CP] Copy Pods Resources */ = {
@@ -299,11 +305,13 @@
 				C77CFD911EFD04FE0047F1DC /* FeedVC.swift in Sources */,
 				C77CFD8F1EFD04C20047F1DC /* RegisterVC.swift in Sources */,
 				C7743CFE1EFCF6CF00B39FB2 /* AppDelegate.swift in Sources */,
+				C790D3331F07771A00BED2E7 /* ProfileData.swift in Sources */,
 				818EF3BE1F02A7C8009F4B19 /* SelectedImageVC.swift in Sources */,
 				C77CFD971EFD0B090047F1DC /* PostVC.swift in Sources */,
 				812DEA6C1F04914D00C5755D /* ProfileImgCell.swift in Sources */,
 				C77CFD951EFD0AF80047F1DC /* EditProfileVC.swift in Sources */,
 				C77CFD891EFD04090047F1DC /* LoginVC.swift in Sources */,
+				C790D3311F06A4BF00BED2E7 /* ExploreVC.swift in Sources */,
 				C73F624E1F053465003E152C /* CommentVC.swift in Sources */,
 				C73F62501F053475003E152C /* CommentCell.swift in Sources */,
 			);
@@ -430,7 +438,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 3F9ZJ33XLL;
+				DEVELOPMENT_TEAM = DQCNUZZSN6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -450,7 +458,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 3F9ZJ33XLL;
+				DEVELOPMENT_TEAM = DQCNUZZSN6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

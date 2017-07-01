@@ -20,6 +20,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITa
             logoutButton.addTarget(self, action: #selector(didTapLogoutButton(_:)), for: .touchUpInside)
         }
     }
+    @IBOutlet weak var addUserButton: UIButton! {
+        didSet{
+            addUserButton.addTarget(self, action: #selector(didTapUserButton(_:)), for: .touchUpInside)
+        }
+    }
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -53,6 +58,13 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITa
         let nextVC = currentVC![3] as! PostVC
         nextVC.currentTabIndex = currentIndex
         self.tabBarController?.delegate = self
+    }
+    
+    func didTapUserButton(_ sender : Any){
+//        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//        let exploreVC = storyboard.instantiateViewController(withIdentifier: "ExploreVC")
+//        self.navigationController?.pushViewController(exploreVC, animated: true)
+        
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {

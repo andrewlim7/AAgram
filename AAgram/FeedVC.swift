@@ -153,10 +153,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITa
         ref.child("posts").child(data.pid).child("likes").observe(.value, with: { (snapshot) in
             if snapshot.hasChild((Auth.auth().currentUser?.uid)!) {
                 cell.likeBtn.tintColor = UIColor.blue
-                cell.liked = false
+                //cell.liked = false
             } else {
                 cell.likeBtn.tintColor = UIColor.black
-                cell.liked = true
+                //cell.liked = true
             }
         })
         

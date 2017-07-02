@@ -19,11 +19,12 @@ class CustomCell: UITableViewCell {
     @IBOutlet weak var textView: UITextView!
 
     @IBOutlet weak var likeBtn: UIButton!
-    var liked : Bool = false
-    var postID : Data?
-    
     
     @IBOutlet weak var likeCountLabel: UILabel!
+    
+    var liked : Bool = false
+    var postID : Data?
+    var currentUser = Auth.auth().currentUser?.uid
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,15 +44,15 @@ class CustomCell: UITableViewCell {
     
     @IBAction func likeButton(_ sender: Any) {
         
-        if liked {
+        if liked == false {
             
             let ref = Database.database().reference()
-            ref.child("posts").child((postID?.pid)!).child("likes").updateChildValues([(Auth.auth().currentUser?.uid)!: true])
+            ref.child("posts").child((postID?.pid)!).child("likes").updateChildValues([currentUser!: true])
             
             liked = true
         } else {
             let ref = Database.database().reference()
-            ref.child("posts").child((postID?.pid)!).child("likes").child((Auth.auth().currentUser?.uid)!).removeValue()
+            ref.child("posts").child((postID?.pid)!).child("likes").child(currentUser!).removeValue()
             liked = false
         }
         

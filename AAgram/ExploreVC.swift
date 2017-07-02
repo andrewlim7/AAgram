@@ -98,7 +98,6 @@ extension ExploreVC : UITableViewDelegate, UITableViewDataSource {
         let currentRow = indexPath.row
         
         vc.currentUserID = userLists[currentRow].userID
-        vc.isOtherUsingProfile = true
         
         self.navigationController?.pushViewController(vc, animated: true)
     }

@@ -29,7 +29,6 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         }
     }
     
-    
     var imgURL: String = ""
     var profileImgs : [Data] = []
     var currentUserID : String?
@@ -37,7 +36,6 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     var selectedName: String = ""
     var selectedCaption: String = ""
     var selectedImg: UIImage!
-    var isOtherUsingProfile : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,22 +46,17 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         fetchChats()
         
         
-//        if self.currentUserID != Auth.auth().currentUser?.uid {
-//            followButton.isEnabled = true
-//            followButton.titleLabel?.textColor = UIColor.white
-//            followButton.backgroundColor = UIColor.green
-//        }
+        if self.currentUserID != Auth.auth().currentUser?.uid {
+            followButton.isEnabled = true
+            followButton.titleLabel?.textColor = UIColor.white
+            followButton.backgroundColor = UIColor.green
+        }
 
     
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
-        if isOtherUsingProfile == true {
-            
-            self.tabBarController?.tabBar.isHidden = true
-
-        }
         let currentIndex = 2
         let currentVC = self.tabBarController?.viewControllers
         let nextVC = currentVC![3] as! PostVC

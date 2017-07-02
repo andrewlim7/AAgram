@@ -15,6 +15,7 @@ class ExploreVC: UIViewController {
     @IBOutlet weak var tableView: UITableView! {
         didSet{
             tableView.dataSource = self
+            tableView.delegate = self
         }
     }
     @IBOutlet weak var profileImage: UITableViewCell!
@@ -26,11 +27,8 @@ class ExploreVC: UIViewController {
         super.viewDidLoad()
         retrieveUsers()
         
-        
         self.navigationController?.isNavigationBarHidden = false
-        self.tabBarController?.tabBar.isHidden = true
 
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,15 +36,25 @@ class ExploreVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
     func retrieveUsers() {
+
         
         let userRef = Database.database().reference()
         userRef.child("users").observe(.childAdded, with: { (snapshot) in
-            guard let validUser = snapshot.value as? [String : Any] else { return }
+//            guard let validUser = snapshot.value as? [String : Any] else { return }
             
+//            if let userList = ProfileData(snapshot: snapshot) {
+//                self.userLists.append(userList)
+//            }
+        
+//            self.tableView.reloadData()
             
-            if let userList = ProfileData(withDictionary: validUser) {
-                self.userLists.append(userList)
+            if let user = ProfileData(snapshot: snapshot) {
+                self.userLists.append(user)
             }
             
             self.tableView.reloadData()
@@ -68,7 +76,6 @@ extension ExploreVC : UITableViewDelegate, UITableViewDataSource {
         let currentRow = indexPath.row
         
         cell.textLabel?.text = userLists[currentRow].name
-//        cell.detailTextLabel?.text = userLists[currentRow].userID
         
         return cell
     }
@@ -80,7 +87,8 @@ extension ExploreVC : UITableViewDelegate, UITableViewDataSource {
         
         let currentRow = indexPath.row
         
-        vc.profileUsername.text = userLists[currentRow].name
+        vc.currentUserID = userLists[currentRow].userID
+        vc.isOtherUsingProfile = true
         
         self.navigationController?.pushViewController(vc, animated: true)
     }

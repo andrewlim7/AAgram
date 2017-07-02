@@ -110,17 +110,21 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITa
         
         ref.child("posts").observe(.childAdded, with: { (snapshot) in
             
-            guard let validDictionary = snapshot.value as? [String:Any] else { return }
+//            guard let validDictionary = snapshot.value as? [String:Any] else { return }
             
-            if let data = Data(withDictionary: validDictionary) {
- 
-                 self.datas.append(data)
+            if let data = Data(snapshot: snapshot) {
+                ref.child("users").child(data.userID).observeSingleEvent(of: .value, with: { (userSnapshot) in
+                    if let user = ProfileData(snapshot: userSnapshot) {
+//                        data.userID = user.userID!
+                        data.profileImage = user.imageURL
+                        self.datas.append(data)
+                    }
+                    self.datas.sort(by: {$0.timeStamp > $1.timeStamp})
+                    self.tableView.reloadData()
+                })
             }
-            
-            self.datas.sort(by: {$0.timeStamp > $1.timeStamp})
-            self.tableView.reloadData()
-            
         })
+        
 
     }
     
@@ -135,10 +139,34 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITa
         
         let data = datas[indexPath.row]
         
+        let url = NSURL(string: data.profileImage!)
+        cell.profilePicture.sd_setImage(with: url! as URL)
+        
         cell.textView?.text = data.caption
         cell.userNameLabel?.text = data.name
         
         cell.mainImageView.sd_setImage(with: data.imageURL, placeholderImage: UIImage(named: "placeholder.png"))
+        
+        cell.postID = data //get current post index
+        
+        let ref = Database.database().reference()
+        ref.child("posts").child(data.pid).child("likes").observe(.value, with: { (snapshot) in
+            if snapshot.hasChild((Auth.auth().currentUser?.uid)!) {
+                cell.likeBtn.tintColor = UIColor.blue
+                cell.liked = false
+            } else {
+                cell.likeBtn.tintColor = UIColor.black
+                cell.liked = true
+            }
+        })
+        
+        ref.child("posts").child(data.pid).child("likes").observe(.value, with: {likesSnapshot in
+            
+            var count = 0
+            count += Int(likesSnapshot.childrenCount)
+            cell.likeCountLabel.text = "Total Likes:\(count)"
+            
+        })
         
         return cell
 

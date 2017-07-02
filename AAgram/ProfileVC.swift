@@ -22,6 +22,12 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     @IBOutlet weak var profileBio: UILabel!
     @IBOutlet weak var profileUsername: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var followButton: UIButton! {
+        didSet{
+            followButton.addTarget(self, action: #selector(followBtnPressed(_:)), for: .touchUpInside)
+            followButton.isEnabled = false
+        }
+    }
     
     
     var imgURL: String = ""
@@ -41,6 +47,14 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         
         fetchChats()
         
+        
+//        if self.currentUserID != Auth.auth().currentUser?.uid {
+//            followButton.isEnabled = true
+//            followButton.titleLabel?.textColor = UIColor.white
+//            followButton.backgroundColor = UIColor.green
+//        }
+
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,9 +120,12 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
 
     }
     
-    @IBAction func followBtnPressed(_ sender: Any) {
-        
-        
+    func followBtnPressed(_ sender: Any) {
+
+        let followingRef = Database.database().reference()
+        followingRef.child("users").child(self.currentUserID!).observe(.value, with: { (snapshot) in
+            
+        })
         
         
     }
@@ -130,13 +147,14 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
                     }
                     
                     let username = dictionary["username"] as? String ?? dictionary["name"]
-                    let profileURL = dictionary["profileImageURL"] as? String
                     
-                    let displayUrl = NSURL(string : profileURL!)
+                    if let profileURL = dictionary["profileImageURL"] as? String {
+                        let displayUrl = NSURL(string : profileURL)
+                        
+                        self.profileImage.sd_setImage(with: displayUrl! as URL, placeholderImage: UIImage(named: "placeholder.png"))
+                    }
                     
                     self.profileUsername.text = username as? String
-                    
-                    self.profileImage.sd_setImage(with: displayUrl! as URL, placeholderImage: UIImage(named: "placeholder.png"))
                     
                     self.profileImgs = []
                     
@@ -172,6 +190,7 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
                     }
                     
                     let username = dictionary["username"] as? String ?? dictionary["name"]
+                    
                     if let profileURL = dictionary["profileImageURL"] as? String {
                          let displayUrl = NSURL(string : profileURL)
                         
@@ -211,9 +230,9 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         
         ref.child("posts").child(postID).observeSingleEvent(of: .value, with: { (snapshot) in
             
-            guard let validDictionary = snapshot.value as? [String:Any] else { return }
+//            guard let validDictionary = snapshot.value as? [String:Any] else { return }
             
-            if let data = Data(withDictionary: validDictionary) {
+            if let data = Data(snapshot: snapshot) {
                 
                 self.profileImgs.append(data)
             }

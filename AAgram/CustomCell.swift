@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
 class CustomCell: UITableViewCell {
     
@@ -15,6 +17,13 @@ class CustomCell: UITableViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet weak var textView: UITextView!
+
+    @IBOutlet weak var likeBtn: UIButton!
+    var liked : Bool = false
+    var postID : Data?
+    
+    
+    @IBOutlet weak var likeCountLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,5 +40,24 @@ class CustomCell: UITableViewCell {
         
         mainImageView.image = nil
     }
+    
+    @IBAction func likeButton(_ sender: Any) {
+        
+        if liked {
+            
+            let ref = Database.database().reference()
+            ref.child("posts").child((postID?.pid)!).child("likes").updateChildValues([(Auth.auth().currentUser?.uid)!: true])
+            
+            liked = true
+        } else {
+            let ref = Database.database().reference()
+            ref.child("posts").child((postID?.pid)!).child("likes").child((Auth.auth().currentUser?.uid)!).removeValue()
+            liked = false
+        }
+        
+        
+    }
+    
+    
 
 }

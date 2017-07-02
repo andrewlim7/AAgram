@@ -29,7 +29,7 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="518" id="qcD-VG-z8i" customClass="CustomCell" customModule="AAgram" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="518"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="qcD-VG-z8i" id="l6a-MT-N1v">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" tableViewCell="qcD-VG-z8i" id="l6a-MT-N1v">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="518"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -49,7 +49,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6HO-C4-xfE">
-                                                    <rect key="frame" x="0.0" y="488" width="75" height="21"/>
+                                                    <rect key="frame" x="8" y="483" width="75" height="26"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -59,6 +59,9 @@
                                                     <rect key="frame" x="342" y="484" width="64" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Likes"/>
+                                                    <connections>
+                                                        <action selector="likeButton:" destination="qcD-VG-z8i" eventType="touchUpInside" id="W7C-2L-2T1"/>
+                                                    </connections>
                                                 </button>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6t2-bS-sfG">
                                                     <rect key="frame" x="8" y="423" width="398" height="53"/>
@@ -68,10 +71,19 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Likes: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C3V-Fo-Uf9">
+                                                    <rect key="frame" x="91" y="483" width="243" height="26"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
+                                            <outlet property="likeBtn" destination="4hW-Bk-hyh" id="Cwi-0f-jO1"/>
+                                            <outlet property="likeCountLabel" destination="C3V-Fo-Uf9" id="Bcu-TY-516"/>
                                             <outlet property="mainImageView" destination="p71-RL-YHo" id="eb3-Tn-Zhi"/>
                                             <outlet property="profilePicture" destination="UbD-vH-Wbm" id="Fp9-2V-eMb"/>
                                             <outlet property="textView" destination="6t2-bS-sfG" id="Odf-xO-qfE"/>
@@ -182,7 +194,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="85" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5fx-n0-OoA">
-                                <rect key="frame" x="0.0" y="73" width="414" height="599"/>
+                                <rect key="frame" x="0.0" y="67" width="414" height="605"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -399,9 +411,6 @@
                                         <rect key="frame" x="196" y="143" width="159" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Follow"/>
-                                        <connections>
-                                            <action selector="followBtnPressed:" destination="qjr-aJ-p70" eventType="touchUpInside" id="46y-wk-eWG"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -478,6 +487,7 @@
                     <connections>
                         <outlet property="collectionView" destination="G6t-7J-ZDQ" id="PLS-PX-nMY"/>
                         <outlet property="editProfileBtn" destination="zBk-q5-dKe" id="8sj-JV-Aie"/>
+                        <outlet property="followButton" destination="1fu-Gw-CU9" id="r7f-zH-p1i"/>
                         <outlet property="profileBio" destination="SwY-hb-1Q0" id="VTP-Jp-aM0"/>
                         <outlet property="profileFollow" destination="J3j-9F-TVX" id="wla-Qw-9CJ"/>
                         <outlet property="profileFollowers" destination="JV6-cO-sSp" id="4Zf-mV-Ifm"/>

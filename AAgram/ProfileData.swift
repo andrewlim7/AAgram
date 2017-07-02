@@ -13,8 +13,9 @@ class ProfileData{
     
     var name : String?
     var userID : String?
-    var imageURL : URL?
-    
+    var imageURL : String?
+    var follower: String?
+    var following: String?
     
     init?(snapshot: DataSnapshot){
         
@@ -28,9 +29,23 @@ class ProfileData{
             self.name = ""
         }
         
-        if let validImageURL = dictionary["profileURL"] as? String {
+        if let validImageURL = dictionary["profileImageURL"] as? String {
             
-            self.imageURL = URL(string: validImageURL)
+            self.imageURL = validImageURL
+        } else {
+            self.imageURL = ""
+        }
+        
+        if let dictFollower = dictionary["follower"] as? String{
+            self.follower = dictFollower
+        }else{
+            self.follower = ""
+        }
+        
+        if let dictFollowing = dictionary["following"] as? String{
+            self.following = dictFollowing
+        }else{
+            self.following = ""
         }
         
     }

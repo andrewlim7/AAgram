@@ -26,10 +26,12 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     
     var imgURL: String = ""
     var profileImgs : [Data] = []
+    var currentUserID : String?
     
     var selectedName: String = ""
     var selectedCaption: String = ""
     var selectedImg: UIImage!
+    var isOtherUsingProfile : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +44,12 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        if isOtherUsingProfile == true {
+            
+            self.tabBarController?.tabBar.isHidden = true
+
+        }
         let currentIndex = 2
         let currentVC = self.tabBarController?.viewControllers
         let nextVC = currentVC![3] as! PostVC
@@ -100,6 +108,9 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     
     @IBAction func followBtnPressed(_ sender: Any) {
         
+        
+        
+        
     }
     
     
@@ -107,42 +118,92 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         
         let ref = Database.database().reference()
         
-        if let user = Auth.auth().currentUser?.uid {
+        if self.currentUserID == nil {
             
-            ref.child("users").child(user).observe(.value, with: { (snapshot) in
-
-                guard let dictionary = snapshot.value as? [String:Any] else {
+            if let user = Auth.auth().currentUser?.uid {
+                
+                ref.child("users").child(user).observe(.value, with: { (snapshot) in
+                    
+                    guard let dictionary = snapshot.value as? [String:Any] else {
+                        
+                        return
+                    }
+                    
+                    let username = dictionary["username"] as? String ?? dictionary["name"]
+                    let profileURL = dictionary["profileImageURL"] as? String
+                    
+                    let displayUrl = NSURL(string : profileURL!)
+                    
+                    self.profileUsername.text = username as? String
+                    
+                    self.profileImage.sd_setImage(with: displayUrl! as URL, placeholderImage: UIImage(named: "placeholder.png"))
+                    
+                    self.profileImgs = []
+                    
+                    guard let postDictionary = dictionary["post"] as? [String:Any]
+                        
+                        else { return }
+                    
+                    self.profileImgs.sort(by: {$0.timeStamp > $1.timeStamp})
+                    
+                    for (key,_) in postDictionary {
+                        
+                        self.getPost(key)
+                    }
+                    
+                }) { (error) in
+                    
+                    print(error.localizedDescription)
                     
                     return
                 }
-                
-                let username = dictionary["username"] as? String ?? dictionary["name"]
-                let profileURL = dictionary["profileImageURL"] as? URL // help me fix this
-                
-                self.profileUsername.text = username as? String
-                self.profileImage.sd_setImage(with: profileURL, placeholderImage: UIImage(named: "placeholder.png")) // this is to load the image
-                
-                self.profileImgs = []
-                
-                guard let postDictionary = dictionary["post"] as? [String:Any]
-                    
-                    else { return }
-                
-                self.profileImgs.sort(by: {$0.timeStamp > $1.timeStamp})
-                
-                for (key,_) in postDictionary {
-                    
-                    self.getPost(key)
-                }
-                
-            }) { (error) in
+            }
+
+        
+        } else {
             
-            print(error.localizedDescription)
+            if let user = self.currentUserID {
                 
-            return
+                ref.child("users").child(user).observe(.value, with: { (snapshot) in
+                    
+                    guard let dictionary = snapshot.value as? [String:Any] else {
+                        
+                        return
+                    }
+                    
+                    let username = dictionary["username"] as? String ?? dictionary["name"]
+                    if let profileURL = dictionary["profileImageURL"] as? String {
+                         let displayUrl = NSURL(string : profileURL)
+                        
+                        self.profileImage.sd_setImage(with: displayUrl! as URL, placeholderImage: UIImage(named: "placeholder.png"))
+                    }
+                    
+                    self.profileUsername.text = username as? String
+                    
+                    self.profileImgs = []
+                    
+                    guard let postDictionary = dictionary["post"] as? [String:Any]
+                        
+                        else { return }
+                    
+                    self.profileImgs.sort(by: {$0.timeStamp > $1.timeStamp})
+                    
+                    for (key,_) in postDictionary {
+                        
+                        self.getPost(key)
+                    }
+                    
+                }) { (error) in
+                    
+                    print(error.localizedDescription)
+                    
+                    return
+                }
+            }
+            
         }
+        
     }
-}
     
     func getPost(_ postID: String) {
         

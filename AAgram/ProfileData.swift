@@ -7,24 +7,26 @@
 //
 
 import Foundation
+import FirebaseDatabase
 
 class ProfileData{
     
-    var name : String
-    //var userID : String
+    var name : String?
+    var userID : String?
     var imageURL : URL?
-
     
-    init?(withDictionary dictionary: [String: Any]) {
+    
+    init?(snapshot: DataSnapshot){
         
-        guard
-            
-//            let validUser = dictionary["userID"] as? String,
-            let validName = dictionary["username"] as? String
-            else { return nil }
+        self.userID = snapshot.key
         
-//        self.userID = validUser
-        self.name = validName
+        guard let dictionary = snapshot.value as? [String: Any] else { return nil }
+    
+        if let validName = dictionary["username"] as? String ?? dictionary["name"] {
+            self.name = validName as? String
+        } else {
+            self.name = ""
+        }
         
         if let validImageURL = dictionary["profileURL"] as? String {
             
@@ -32,6 +34,25 @@ class ProfileData{
         }
         
     }
+    
 
+    
+//    init?(withDictionary dictionary: [String: Any]) {
+//        
+//        guard
+//            
+//            let validUser = dictionary["userID"] as? String,
+//            let validName = dictionary["username"] as? String
+//            else { return nil }
+//        
+//        self.userID = validUser
+//        self.name = validName
+//        
+//        if let validImageURL = dictionary["profileURL"] as? String {
+//            
+//            self.imageURL = URL(string: validImageURL)
+//        }
+//
+//    }
     
 }

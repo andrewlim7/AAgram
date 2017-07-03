@@ -122,7 +122,7 @@
             </objects>
             <point key="canvasLocation" x="4826.0869565217399" y="31.793478260869566"/>
         </scene>
-        <!--Post-->
+        <!--PostVC-->
         <scene sceneID="Qki-QM-b0w">
             <objects>
                 <viewController id="d4F-hu-oat" customClass="PostVC" customModule="AAgram" customModuleProvider="target" sceneMemberID="viewController">
@@ -166,7 +166,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Post" image="Photo" selectedImage="Photo" id="8l9-Yd-aLG"/>
+                    <tabBarItem key="tabBarItem" title="" image="Photo" selectedImage="Photo" id="8l9-Yd-aLG"/>
                     <connections>
                         <outlet property="cancelButton" destination="BaM-Tl-dGg" id="ZuA-qx-NUb"/>
                         <outlet property="doneButton" destination="kKF-pu-aWH" id="2Jl-12-YA1"/>
@@ -561,11 +561,11 @@
             </objects>
             <point key="canvasLocation" x="2980" y="31.934032983508249"/>
         </scene>
-        <!--Home-->
+        <!--Navigation Controller-->
         <scene sceneID="AZa-xl-XGT">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hFU-iH-nc3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="Home" selectedImage="Home_Selected" id="COl-EB-9lo"/>
+                    <tabBarItem key="tabBarItem" title="" image="Home" selectedImage="Home_Selected" id="COl-EB-9lo"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mHi-A9-39L">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -584,11 +584,11 @@
             </objects>
             <point key="canvasLocation" x="3918.8405797101454" y="31.793478260869566"/>
         </scene>
-        <!--Search-->
+        <!--Navigation Controller-->
         <scene sceneID="8FT-VW-JgW">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="EWn-ch-iNS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search" image="Search" selectedImage="Search_Selected" id="sjT-6K-xBN"/>
+                    <tabBarItem key="tabBarItem" title="" image="Search" selectedImage="Search_Selected" id="sjT-6K-xBN"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="85i-Li-Iu5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -603,11 +603,11 @@
             </objects>
             <point key="canvasLocation" x="3917.3913043478265" y="739.4021739130435"/>
         </scene>
-        <!--Profile-->
+        <!--Navigation Controller-->
         <scene sceneID="ydm-l8-Cl0">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KaP-p7-QX1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="Profile" selectedImage="Profile_Selected" id="kIR-t3-KlD"/>
+                    <tabBarItem key="tabBarItem" title="" image="Profile" selectedImage="Profile_Selected" id="kIR-t3-KlD"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9xW-Te-i66">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

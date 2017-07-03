@@ -17,8 +17,10 @@ class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     var searchUser : [ProfileData] = []
     var filteredUser : [ProfileData] = []
+    var inSearchMode: Bool = false
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         searchBar.delegate = self
@@ -91,8 +93,11 @@ class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         
         let currentRow = indexPath.row
         
+        inSearchMode = true
+        
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileVC
+        vc.isSearchingMode = inSearchMode
         
         vc.currentUserID = filteredUser[currentRow].userID
         

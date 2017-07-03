@@ -37,6 +37,8 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     var selectedCaption: String = ""
     var selectedImg: UIImage!
     
+    var isSearchingMode : Bool?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -64,6 +66,12 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         let nextVC = currentVC![3] as! PostVC
         nextVC.currentTabIndex = currentIndex
         self.navigationController?.isNavigationBarHidden = false
+        
+        
+        if isSearchingMode == true {
+            
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -158,7 +166,7 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
                     
                     self.profileBio.text = displayBio
                     
-                    self.title = self.profileUsername.text
+                    self.navigationItem.title = self.profileUsername.text
                     
                     self.profileImgs = []
                     
@@ -203,7 +211,7 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
                     
                     self.profileUsername.text = username as? String
                     
-                    self.title = self.profileUsername.text
+                    self.navigationItem.title = self.profileUsername.text
                     
                     self.profileImgs = []
                     

@@ -16,7 +16,11 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var changeImageView: UIImageView!
     
-    @IBOutlet weak var bioTextField: UITextField!
+    @IBOutlet weak var bioTextField: UITextField!{
+        didSet{
+            bioTextField.delegate = self
+        }
+    }
     
     @IBOutlet weak var changeProfilePicButton: UIButton!{
         didSet{
@@ -123,8 +127,7 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
+        bioTextField.resignFirstResponder()
         return true
     }
 

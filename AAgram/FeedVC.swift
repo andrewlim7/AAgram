@@ -37,6 +37,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITa
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.allowsSelection = false
         
         fetchChats()
         

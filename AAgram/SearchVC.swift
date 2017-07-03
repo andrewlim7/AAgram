@@ -14,6 +14,7 @@ class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+
     
     var searchUser : [ProfileData] = []
     var filteredUser : [ProfileData] = []
@@ -75,6 +76,7 @@ class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         let data = filteredUser[indexPath.row]
         
         cell.profileName?.text = data.name
+        cell.profileBioLabel.text = data.bio
 
         let url = NSURL(string: data.imageURL!)
         
@@ -100,6 +102,7 @@ class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         vc.isSearchingMode = inSearchMode
         
         vc.currentUserID = filteredUser[currentRow].userID
+        vc.displayBio = filteredUser[currentRow].bio
         
         self.navigationController?.pushViewController(vc, animated: true)
         

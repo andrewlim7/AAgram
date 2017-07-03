@@ -18,6 +18,11 @@ class SelectedImageVC: UIViewController {
     @IBOutlet weak var selectedProfPic: UIImageView!
     @IBOutlet weak var numberOfLikes: UILabel!
     @IBOutlet weak var likeBtn: UIButton!
+    @IBOutlet weak var commentBtn: UIButton!{
+        didSet{
+            commentBtn.addTarget(self, action: #selector(didTapCommentBtn(_:)), for: .touchUpInside)
+        }
+    }
     
     var selectedName: String = ""
     var selectedCaption: String = ""
@@ -85,8 +90,14 @@ class SelectedImageVC: UIViewController {
         
     }
     
-    
-
-    
+    func didTapCommentBtn(_ sender : Any){
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let commentVC = storyboard.instantiateViewController(withIdentifier: "CommentVC") as! CommentVC
+        
+        
+        
+        self.navigationController?.pushViewController(commentVC, animated: true)
+        
+    }
     
 }

@@ -40,6 +40,8 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     var isSearchingMode : Bool?
     var isFollowing : Bool = false
     
+    var displayBio : String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -139,6 +141,7 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         let vc = storyboard.instantiateViewController(withIdentifier: "EditProfileVC") as! EditProfileVC
         
         vc.getBio = self.profileBio.text
+        vc.getProfileImage = self.profileImage.image
         
         self.navigationController?.pushViewController(vc, animated: true)
 
@@ -235,6 +238,7 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
                     }
                     
                     let username = dictionary["username"] as? String ?? dictionary["name"]
+                    let displayBio = dictionary["bio"] as? String
                     
                     if let profileURL = dictionary["profileImageURL"] as? String {
                          let displayUrl = NSURL(string : profileURL)
@@ -243,6 +247,7 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
                     }
                     
                     self.profileUsername.text = username as? String
+                    self.profileBio.text = displayBio
                     
                     self.navigationItem.title = self.profileUsername.text
                     
@@ -252,7 +257,7 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
                         
                         else { return }
                     
-                    self.profileImgs.sort(by: {$0.timeStamp > $1.timeStamp})
+//                    self.profileImgs.sort(by: {$0.timeStamp > $1.timeStamp})
                     
                     for (key,_) in postDictionary {
                         
@@ -283,7 +288,7 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
                 
                 self.profileImgs.append(data)
             }
-            
+            self.profileImgs.sort(by: {$0.timeStamp > $1.timeStamp})
             self.collectionView.reloadData()
         })
 

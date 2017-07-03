@@ -17,9 +17,7 @@ class CustomCell: UITableViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet weak var textView: UITextView!
-
     @IBOutlet weak var likeBtn: UIButton!
-    
     @IBOutlet weak var likeCountLabel: UILabel!
     
     var liked : Bool = false

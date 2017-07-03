@@ -68,23 +68,23 @@ class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        filteredUser = searchUser.filter({ (text) -> Bool in
-            let tmp: NSString = text
-            let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
-            return range.location != NSNotFound
-        })
-        
-        if(filteredUser.count == 0){
-            
-            inSearchMode = false
-            
-        } else {
-            
-            inSearchMode = true
-        }
-        
-        self.tableView.reloadData()
+//        
+//        filteredUser = searchUser.filter({ (text) -> Bool in
+//            let tmp: NSString = text
+//            let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+//            return range.location != NSNotFound
+//        })
+//        
+//        if(filteredUser.count == 0){
+//            
+//            inSearchMode = false
+//            
+//        } else {
+//            
+//            inSearchMode = true
+//        }
+//        
+//        self.tableView.reloadData()
     }
     
     func getUsers() {

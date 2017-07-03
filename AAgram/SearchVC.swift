@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -23,11 +23,11 @@ class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchBar.delegate = self
+//        searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         
-        searchBar.returnKeyType = UIReturnKeyType.done
+//        searchBar.returnKeyType = UIReturnKeyType.done
         
         getUsers()
         
@@ -46,28 +46,28 @@ class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         let nextVC = currentVC![3] as! PostVC
         nextVC.currentTabIndex = currentIndex
     }
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        
-        inSearchMode = true
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        
-        inSearchMode = false
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        
-        inSearchMode = false
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
-        inSearchMode = true
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//    
+//    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+//        
+//        inSearchMode = true
+//    }
+//    
+//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+//        
+//        inSearchMode = false
+//    }
+//    
+//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+//        
+//        inSearchMode = false
+//    }
+//    
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        
+//        inSearchMode = true
+//    }
+//    
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 //        
 //        filteredUser = searchUser.filter({ (text) -> Bool in
 //            let tmp: NSString = text
@@ -85,7 +85,7 @@ class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
 //        }
 //        
 //        self.tableView.reloadData()
-    }
+//    }
     
     func getUsers() {
         
@@ -104,10 +104,7 @@ class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        if(inSearchMode) {
-            return filteredUser.count
-        }
+        
         return searchUser.count;
     }
 
@@ -116,16 +113,9 @@ class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SearchCell
         
-        if(inSearchMode){
-            
-            let data = filteredUser[indexPath.row]
-            cell.profileName?.text = data.name
-            
-        } else {
-            
             let data = searchUser[indexPath.row]
+        
             cell.profileName?.text = data.name
-        }
 
         return cell
 
@@ -144,7 +134,6 @@ class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         let currentRow = indexPath.row
         
         vc.currentUserID = searchUser[currentRow].userID
-        vc.isOtherUsingProfile = true
         
         self.navigationController?.pushViewController(vc, animated: true)
         

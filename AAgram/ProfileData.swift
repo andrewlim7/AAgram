@@ -49,7 +49,7 @@ class ProfileData{
             self.following = ""
         }
         
-        if let dictBio = dictionary["following"] as? String{
+        if let dictBio = dictionary["bio"] as? String{
             self.bio = dictBio
         }else{
             self.bio = ""

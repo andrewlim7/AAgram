@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SelectedImageVC: UIViewController {
     
@@ -16,12 +17,16 @@ class SelectedImageVC: UIViewController {
     @IBOutlet weak var selectedImgView: UIImageView!
     @IBOutlet weak var selectedProfPic: UIImageView!
     @IBOutlet weak var numberOfLikes: UILabel!
-    
+    @IBOutlet weak var likeBtn: UIButton!
     
     var selectedName: String = ""
     var selectedCaption: String = ""
     var selectedImg: UIImage!
     var selectedProfileImage : UIImage?
+
+    var postID : Data?
+    var liked : Bool = false
+    var currentUser = Auth.auth().currentUser?.uid
     
     static let CellIdentifer = "SelectedImageVC"
     
@@ -33,20 +38,55 @@ class SelectedImageVC: UIViewController {
         captionTextView.text = selectedCaption
         selectedImgView.image = selectedImg
         selectedProfPic.image = selectedProfileImage
+        
+        
+        let ref = Database.database().reference()
+        
+        ref.child("posts").child((postID?.pid)!).child("likes").observe(.value, with: { (snapshot) in
+            if snapshot.hasChild((Auth.auth().currentUser?.uid)!) {
+                self.likeBtn.tintColor = UIColor.blue
+                //cell.liked = false
+            } else {
+                self.likeBtn.tintColor = UIColor.black
+                //cell.liked = true
+            }
+        })
+        
+        ref.child("posts").child((postID?.pid)!).child("likes").observe(.value, with: {likesSnapshot in
+            
+            var count = 0
+            count += Int(likesSnapshot.childrenCount)
+            self.numberOfLikes.text = "Total Likes:\(count)"
+            
+        })
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
 
     }
-    
-    @IBAction func exitBtnPressed(_ sender: Any) {
-        
-        dismiss(animated: true, completion: nil)
-    }
-    
 
     @IBAction func likeBtnPressed(_ sender: Any) {
-    }
+        
+        if liked == false {
+            
+            let ref = Database.database().reference()
+            ref.child("posts").child((postID?.pid)!).child("likes").updateChildValues([currentUser!: true])
+            
+            liked = true
+            
+        } else {
+            
+            let ref = Database.database().reference()
+            ref.child("posts").child((postID?.pid)!).child("likes").child(currentUser!).removeValue()
+            liked = false
+        }
 
+        
+    }
+    
+    
+
+    
+    
 }

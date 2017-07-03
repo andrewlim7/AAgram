@@ -355,6 +355,7 @@
                     <navigationItem key="navigationItem" id="t4r-X9-UkF"/>
                     <connections>
                         <outlet property="captionTextView" destination="QJd-ee-c6E" id="yzf-bs-cbl"/>
+                        <outlet property="likeBtn" destination="X7i-sJ-uJU" id="EfM-f5-4AX"/>
                         <outlet property="numberOfLikes" destination="0yU-Cz-s16" id="BvC-dc-DOr"/>
                         <outlet property="selectedImgView" destination="vA2-L3-8UZ" id="pvS-C3-V4L"/>
                         <outlet property="selectedProfPic" destination="pfq-xh-Jh8" id="QaS-eS-wZU"/>

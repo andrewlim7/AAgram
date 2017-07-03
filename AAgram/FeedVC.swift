@@ -115,7 +115,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITa
             if let data = Data(snapshot: snapshot) {
                 ref.child("users").child(data.userID).observeSingleEvent(of: .value, with: { (userSnapshot) in
                     if let user = ProfileData(snapshot: userSnapshot) {
-//                        data.userID = user.userID!
                         data.profileImage = user.imageURL
                         self.datas.append(data)
                     }

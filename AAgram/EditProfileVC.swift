@@ -31,7 +31,7 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var doneButton: UIButton! {
         didSet{
             doneButton.addTarget(self, action: #selector(didTapDoneButton(_:)), for: .touchUpInside)
-            doneButton.isEnabled = false
+            //doneButton.isEnabled = false
         }
     }
     
@@ -48,7 +48,6 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
         myActivityIndicator.color = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
         myActivityIndicator.backgroundColor = UIColor.gray
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,7 +65,7 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
 
     func didTapDoneButton(_ sender : Any){
         self.myActivityIndicator.startAnimating()
-        if isImageSelected == true {
+        
             guard
                 let uid = Auth.auth().currentUser?.uid,
                 let changeBio = self.bioTextField.text
@@ -103,11 +102,13 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
                     
                     let ref = Database.database().reference().child("users")
                     ref.child(uid).updateChildValues(param)
+                    
+                    
+                    self.myActivityIndicator.stopAnimating()
+                    self.navigationController?.popViewController(animated: true)
                 }
             }
-            self.myActivityIndicator.stopAnimating()
-            self.dismiss(animated: true, completion: nil)
-        }
+
 
     }
     
@@ -146,8 +147,8 @@ extension EditProfileVC : UIImagePickerControllerDelegate, UINavigationControlle
         
         self.changeImageView.image = selectedImage
         
-        self.isImageSelected = true
-        self.doneButton.isEnabled = true
+        //self.isImageSelected = true
+        //self.doneButton.isEnabled = true
         
         dismiss(animated: true, completion: nil)
         

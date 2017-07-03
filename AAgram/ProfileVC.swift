@@ -56,6 +56,9 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
             followButton.titleLabel?.textColor = UIColor.white
             followButton.backgroundColor = UIColor.green
         }
+        
+        
+        
 
     }
     

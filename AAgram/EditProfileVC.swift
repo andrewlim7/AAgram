@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
 
-class EditProfileVC: UIViewController {
+class EditProfileVC: UIViewController, UITextFieldDelegate {
 
 
     @IBOutlet weak var changeImageView: UIImageView!
@@ -41,6 +41,8 @@ class EditProfileVC: UIViewController {
         
         self.bioTextField.text = getBio
         setupSpinner()
+        myActivityIndicator.color = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
+        myActivityIndicator.backgroundColor = UIColor.gray
 
         // Do any additional setup after loading the view.
     }
@@ -98,10 +100,8 @@ class EditProfileVC: UIViewController {
                     let ref = Database.database().reference().child("users")
                     ref.child(uid).updateChildValues(param)
                 }
-                
-                self.myActivityIndicator.stopAnimating()
             }
-            
+            self.myActivityIndicator.stopAnimating()
             self.dismiss(animated: true, completion: nil)
         }
 
@@ -115,6 +115,17 @@ class EditProfileVC: UIViewController {
         myActivityIndicator.hidesWhenStopped = true
         
         view.addSubview(myActivityIndicator)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        return true
     }
 
 }

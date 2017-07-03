@@ -48,13 +48,13 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         fetchChats()
         
         
-        if ((Auth.auth().currentUser?.uid) != nil) {
+        if self.currentUserID == nil {
             
         } else {
+            
             followButton.isEnabled = true
             followButton.titleLabel?.textColor = UIColor.white
             followButton.backgroundColor = UIColor.green
-            
         }
 
     }

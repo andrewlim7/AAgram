@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		40EB1471550CFEAF6BF5D9C2 /* Pods_AAgram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B52C4AC1018786A6283514 /* Pods_AAgram.framework */; };
+		810FE9601F09FC6D007828DC /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810FE95F1F09FC6D007828DC /* CircleView.swift */; };
 		812DEA681F0397D600C5755D /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812DEA671F0397D600C5755D /* Data.swift */; };
 		812DEA6A1F039B4300C5755D /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812DEA691F039B4300C5755D /* CustomCell.swift */; };
 		812DEA6C1F04914D00C5755D /* ProfileImgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812DEA6B1F04914D00C5755D /* ProfileImgCell.swift */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		33DB1A9451C0C4A22EDF7CF1 /* Pods-AAgram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AAgram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AAgram/Pods-AAgram.debug.xcconfig"; sourceTree = "<group>"; };
+		810FE95F1F09FC6D007828DC /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		812DEA671F0397D600C5755D /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		812DEA691F039B4300C5755D /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		812DEA6B1F04914D00C5755D /* ProfileImgCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImgCell.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				812DEA671F0397D600C5755D /* Data.swift */,
+				810FE95F1F09FC6D007828DC /* CircleView.swift */,
 				81D32ACE1F093FAF00DE9738 /* SearchCell.swift */,
 				C790D3321F07771A00BED2E7 /* ProfileData.swift */,
 				812DEA691F039B4300C5755D /* CustomCell.swift */,
@@ -301,6 +304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				810FE9601F09FC6D007828DC /* CircleView.swift in Sources */,
 				C77CFD991EFD0B140047F1DC /* SearchVC.swift in Sources */,
 				812DEA681F0397D600C5755D /* Data.swift in Sources */,
 				812DEA6A1F039B4300C5755D /* CustomCell.swift in Sources */,

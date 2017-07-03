@@ -46,13 +46,15 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         fetchChats()
         
         
-//        if self.currentUserID != Auth.auth().currentUser?.uid {
-//            followButton.isEnabled = true
-//            followButton.titleLabel?.textColor = UIColor.white
-//            followButton.backgroundColor = UIColor.green
-//        }
+        if ((Auth.auth().currentUser?.uid) != nil) {
+            
+        } else {
+            followButton.isEnabled = true
+            followButton.titleLabel?.textColor = UIColor.white
+            followButton.backgroundColor = UIColor.green
+            
+        }
 
-    
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -156,6 +158,8 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
                     
                     self.profileBio.text = displayBio
                     
+                    self.title = self.profileUsername.text
+                    
                     self.profileImgs = []
                     
                     guard let postDictionary = dictionary["post"] as? [String:Any]
@@ -198,6 +202,8 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
                     }
                     
                     self.profileUsername.text = username as? String
+                    
+                    self.title = self.profileUsername.text
                     
                     self.profileImgs = []
                     

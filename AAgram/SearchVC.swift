@@ -17,17 +17,13 @@ class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     var searchUser : [ProfileData] = []
     var filteredUser : [ProfileData] = []
-    var inSearchMode = false
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
-        
-//        searchBar.returnKeyType = UIReturnKeyType.done
         
         getUsers()
         
@@ -45,46 +41,6 @@ class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         nextVC.currentTabIndex = currentIndex
         self.navigationController?.isNavigationBarHidden = true
     }
-//    
-//    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-//        
-//        inSearchMode = true
-//    }
-//    
-//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-//        
-//        inSearchMode = false
-//    }
-//    
-//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-//        
-//        inSearchMode = false
-//    }
-//    
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        
-//        inSearchMode = true
-//    }
-//    
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        
-//        filteredUser = searchUser.filter({ (text) -> Bool in
-//            let tmp: NSString = text
-//            let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
-//            return range.location != NSNotFound
-//        })
-//        
-//        if(filteredUser.count == 0){
-//            
-//            inSearchMode = false
-//            
-//        } else {
-//            
-//            inSearchMode = true
-//        }
-//        
-//        self.tableView.reloadData()
-//    }
     
     func getUsers() {
         

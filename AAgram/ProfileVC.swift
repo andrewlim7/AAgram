@@ -109,7 +109,10 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     @IBAction func editProfileBtn(_ sender: Any) {
         
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let vc = storyboard.instantiateViewController(withIdentifier: "EditProfileVC")
+        let vc = storyboard.instantiateViewController(withIdentifier: "EditProfileVC") as! EditProfileVC
+        
+        vc.getBio = self.profileBio.text
+        
         self.present(vc, animated: true, completion: nil)
 
     }
@@ -141,6 +144,7 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
                     }
                     
                     let username = dictionary["username"] as? String ?? dictionary["name"]
+                    let displayBio = dictionary["bio"] as? String
                     
                     if let profileURL = dictionary["profileImageURL"] as? String {
                         let displayUrl = NSURL(string : profileURL)
@@ -149,6 +153,8 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
                     }
                     
                     self.profileUsername.text = username as? String
+                    
+                    self.profileBio.text = displayBio
                     
                     self.profileImgs = []
                     

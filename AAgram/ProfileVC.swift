@@ -46,11 +46,11 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         fetchChats()
         
         
-        if self.currentUserID != Auth.auth().currentUser?.uid {
-            followButton.isEnabled = true
-            followButton.titleLabel?.textColor = UIColor.white
-            followButton.backgroundColor = UIColor.green
-        }
+//        if self.currentUserID != Auth.auth().currentUser?.uid {
+//            followButton.isEnabled = true
+//            followButton.titleLabel?.textColor = UIColor.white
+//            followButton.backgroundColor = UIColor.green
+//        }
 
     
     }

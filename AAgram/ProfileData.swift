@@ -16,6 +16,7 @@ class ProfileData{
     var imageURL : String?
     var follower: String?
     var following: String?
+    var bio: String?
     
     init?(snapshot: DataSnapshot){
         
@@ -46,6 +47,12 @@ class ProfileData{
             self.following = dictFollowing
         }else{
             self.following = ""
+        }
+        
+        if let dictBio = dictionary["following"] as? String{
+            self.bio = dictBio
+        }else{
+            self.bio = ""
         }
         
     }

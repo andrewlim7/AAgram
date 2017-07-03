@@ -61,6 +61,7 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         let currentVC = self.tabBarController?.viewControllers
         let nextVC = currentVC![3] as! PostVC
         nextVC.currentTabIndex = currentIndex
+        self.navigationController?.isNavigationBarHidden = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -102,7 +103,7 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         vc.selectedName = profileUsername.text!
         vc.selectedProfileImage = self.profileImage.image
         
-        self.present(vc, animated: true, completion: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
 
     }
 
@@ -113,7 +114,7 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         
         vc.getBio = self.profileBio.text
         
-        self.present(vc, animated: true, completion: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
 
     }
     
@@ -123,7 +124,6 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         followingRef.child("users").child(self.currentUserID!).observe(.value, with: { (snapshot) in
             
         })
-        
         
     }
     

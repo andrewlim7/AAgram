@@ -43,6 +43,7 @@ class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         let currentVC = self.tabBarController?.viewControllers
         let nextVC = currentVC![3] as! PostVC
         nextVC.currentTabIndex = currentIndex
+        self.navigationController?.isNavigationBarHidden = true
     }
 //    
 //    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {

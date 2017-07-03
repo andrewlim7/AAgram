@@ -60,7 +60,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITa
         self.tabBarController?.delegate = self
         
         self.tabBarController?.tabBar.isHidden = false
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = false
+        
+        self.title = "AAGram"
     }
     
     func didTapUserButton(_ sender : Any){

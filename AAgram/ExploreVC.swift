@@ -45,13 +45,6 @@ class ExploreVC: UIViewController {
         
         let userRef = Database.database().reference()
         userRef.child("users").observe(.childAdded, with: { (snapshot) in
-//            guard let validUser = snapshot.value as? [String : Any] else { return }
-            
-//            if let userList = ProfileData(snapshot: snapshot) {
-//                self.userLists.append(userList)
-//            }
-        
-//            self.tableView.reloadData()
             
             if let user = ProfileData(snapshot: snapshot) {
                 self.userLists.append(user)

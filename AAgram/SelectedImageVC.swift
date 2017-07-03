@@ -15,6 +15,8 @@ class SelectedImageVC: UIViewController {
     @IBOutlet weak var captionTextView: UITextView!
     @IBOutlet weak var selectedImgView: UIImageView!
     @IBOutlet weak var selectedProfPic: UIImageView!
+    @IBOutlet weak var numberOfLikes: UILabel!
+    
     
     var selectedName: String = ""
     var selectedCaption: String = ""
@@ -44,5 +46,7 @@ class SelectedImageVC: UIViewController {
     }
     
 
+    @IBAction func likeBtnPressed(_ sender: Any) {
+    }
 
 }

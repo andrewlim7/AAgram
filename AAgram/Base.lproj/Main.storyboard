@@ -33,7 +33,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="517.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="diamond_K" translatesAutoresizingMaskIntoConstraints="NO" id="UbD-vH-Wbm">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="diamond_K" translatesAutoresizingMaskIntoConstraints="NO" id="UbD-vH-Wbm" customClass="CircleView" customModule="AAgram" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="8" width="57" height="53"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -97,14 +97,14 @@
                         <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                     </view>
                     <navigationItem key="navigationItem" id="CI1-kk-9aI">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="Aug-gx-ktc">
+                        <barButtonItem key="leftBarButtonItem" id="Aug-gx-ktc">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wcj-3c-Gr1">
                                 <rect key="frame" x="20" y="5" width="64" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add User"/>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="9Jb-T5-sRO">
+                        <barButtonItem key="rightBarButtonItem" id="9Jb-T5-sRO">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YQ4-zX-emu">
                                 <rect key="frame" x="339" y="7" width="55" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -251,10 +251,10 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="87"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V0d-7j-xFU" id="2EN-Zm-W5L">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="86.666666666666671"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="86.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9my-Yl-Mtb">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9my-Yl-Mtb" customClass="CircleView" customModule="AAgram" customModuleProvider="target">
                                                     <rect key="frame" x="28" y="11" width="94" height="65"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -330,7 +330,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="diamond_K" translatesAutoresizingMaskIntoConstraints="NO" id="pfq-xh-Jh8">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="diamond_K" translatesAutoresizingMaskIntoConstraints="NO" id="pfq-xh-Jh8" customClass="CircleView" customModule="AAgram" customModuleProvider="target">
                                 <rect key="frame" x="16" y="72" width="82" height="73"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -372,7 +372,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="218"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="diamond_K" translatesAutoresizingMaskIntoConstraints="NO" id="SAw-Yn-x1b">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="diamond_K" translatesAutoresizingMaskIntoConstraints="NO" id="SAw-Yn-x1b" customClass="CircleView" customModule="AAgram" customModuleProvider="target">
                                         <rect key="frame" x="20" y="74" width="150" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -606,7 +606,6 @@
         <!--Profile-->
         <scene sceneID="ydm-l8-Cl0">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Nss-3h-eCz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KaP-p7-QX1" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="Profile" selectedImage="Profile_Selected" id="kIR-t3-KlD"/>
                     <toolbarItems/>
@@ -619,6 +618,7 @@
                         <segue destination="qjr-aJ-p70" kind="relationship" relationship="rootViewController" id="U2W-gx-Xfa"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nss-3h-eCz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4824.6376811594209" y="-688.85869565217399"/>
         </scene>

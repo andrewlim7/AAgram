@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -23,15 +23,13 @@ class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        searchBar.delegate = self
+        searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         
 //        searchBar.returnKeyType = UIReturnKeyType.done
         
         getUsers()
-        
-        self.navigationController?.isNavigationBarHidden = false
         
     }
 
@@ -98,6 +96,8 @@ class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.searchUser.append(user)
             }
             
+            self.filteredUser = self.searchUser
+            
             self.tableView.reloadData()
             
         })
@@ -105,7 +105,7 @@ class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return searchUser.count;
+        return filteredUser.count;
     }
 
     
@@ -113,9 +113,13 @@ class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SearchCell
         
-            let data = searchUser[indexPath.row]
+        let data = filteredUser[indexPath.row]
         
-            cell.profileName?.text = data.name
+        cell.profileName?.text = data.name
+
+        let url = NSURL(string: data.imageURL!)
+        
+        cell.profileImg.sd_setImage(with: url! as URL)
 
         return cell
 
@@ -128,15 +132,25 @@ class SearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        let currentRow = indexPath.row
+        
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileVC
         
-        let currentRow = indexPath.row
-        
-        vc.currentUserID = searchUser[currentRow].userID
+        vc.currentUserID = filteredUser[currentRow].userID
         
         self.navigationController?.pushViewController(vc, animated: true)
         
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        filteredUser = searchText.isEmpty ? searchUser : searchUser.filter { (item: ProfileData) -> Bool in
+            // If dataItem matches the searchText, return true to include it
+            return item.name?.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+        }
+        
+        tableView.reloadData()
     }
 
 }

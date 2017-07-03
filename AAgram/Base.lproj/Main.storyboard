@@ -232,7 +232,7 @@
             </objects>
             <point key="canvasLocation" x="3918.8405797101454" y="-1343.4782608695652"/>
         </scene>
-        <!--Search-->
+        <!--SearchVC-->
         <scene sceneID="T5h-WY-5hc">
             <objects>
                 <viewController storyboardIdentifier="SearchVC" id="8q4-Nn-3q7" customClass="SearchVC" customModule="AAgram" customModuleProvider="target" sceneMemberID="viewController">
@@ -284,7 +284,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Search" image="Search" selectedImage="Search_Selected" id="sjT-6K-xBN"/>
+                    <navigationItem key="navigationItem" id="S40-P3-Ehm"/>
                     <connections>
                         <outlet property="searchBar" destination="wId-4r-KHl" id="dfm-8G-D3G"/>
                         <outlet property="tableView" destination="6Ed-Xo-Yju" id="Xuj-u4-paT"/>
@@ -292,7 +292,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lbv-1i-Vrg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3917.3913043478265" y="739.4021739130435"/>
+            <point key="canvasLocation" x="4824.6376811594209" y="739.4021739130435"/>
         </scene>
         <!--Selected ImageVC-->
         <scene sceneID="0qV-cq-0sd">
@@ -555,7 +555,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="hFU-iH-nc3" kind="relationship" relationship="viewControllers" id="Eja-kq-MM4"/>
-                        <segue destination="8q4-Nn-3q7" kind="relationship" relationship="viewControllers" id="woC-Vi-C9j"/>
+                        <segue destination="EWn-ch-iNS" kind="relationship" relationship="viewControllers" id="woC-Vi-C9j"/>
                         <segue destination="qjr-aJ-p70" kind="relationship" relationship="viewControllers" id="bG3-ea-Poi"/>
                         <segue destination="d4F-hu-oat" kind="relationship" relationship="viewControllers" id="6Hq-Dl-xaa"/>
                     </connections>
@@ -586,6 +586,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F3s-jI-pTG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3918.8405797101454" y="31.793478260869566"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="8FT-VW-JgW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EWn-ch-iNS" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Search" image="Search" selectedImage="Search_Selected" id="sjT-6K-xBN"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="85i-Li-Iu5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8q4-Nn-3q7" kind="relationship" relationship="rootViewController" id="QLY-XL-klM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GAe-FQ-t2G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3917.3913043478265" y="739.4021739130435"/>
         </scene>
     </scenes>
     <resources>

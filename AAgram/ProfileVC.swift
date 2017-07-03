@@ -56,12 +56,19 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
             followButton.isEnabled = true
             followButton.titleLabel?.textColor = UIColor.white
             followButton.backgroundColor = UIColor.green
+            
+            let ref = Database.database().reference()
+            ref.child("users").child(self.currentUserID!).child("follower").observe(.value, with: { (snapshot) in
+                if snapshot.hasChild((Auth.auth().currentUser?.uid)!) {
+                    self.followButton.backgroundColor = UIColor.red
+                    self.followButton.titleLabel?.text = "Following"
+                } else {
+                    self.followButton.backgroundColor = UIColor.green
+                    self.followButton.titleLabel?.text = "Follow"
+                }
+            })
         }
         
-        
-        
-        
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -145,9 +152,7 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
             
             let followingRef = Database.database().reference().child("users").child((Auth.auth().currentUser?.uid)!)
             followingRef.child("following").updateChildValues([self.currentUserID! : true])
-            
-            followButton.titleLabel?.text = "Unfollow"
-            followButton.backgroundColor = UIColor.red
+        
             
             isFollowing = true
         } else {
@@ -157,8 +162,7 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
             let followingRef = Database.database().reference().child("users").child((Auth.auth().currentUser?.uid)!)
             followingRef.child("following").child(self.currentUserID!).removeValue()
             
-            followButton.titleLabel?.textColor = UIColor.white
-            followButton.backgroundColor = UIColor.green
+        
             
             isFollowing = false
 

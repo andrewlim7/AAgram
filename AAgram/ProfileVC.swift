@@ -38,6 +38,7 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     var selectedImg: UIImage!
     
     var isSearchingMode : Bool?
+    var isFollowing : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +57,7 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
             followButton.titleLabel?.textColor = UIColor.white
             followButton.backgroundColor = UIColor.green
         }
+        
         
         
         
@@ -132,12 +134,32 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     }
     
     func followBtnPressed(_ sender: Any) {
-
-        let followingRef = Database.database().reference()
-        followingRef.child("users").child(self.currentUserID!).observe(.value, with: { (snapshot) in
-            
-        })
         
+        if isFollowing == false {
+            let followerRef = Database.database().reference().child("users").child(self.currentUserID!)
+            followerRef.child("follower").updateChildValues([(Auth.auth().currentUser?.uid)! : true])
+            
+            let followingRef = Database.database().reference().child("users").child((Auth.auth().currentUser?.uid)!)
+            followingRef.child("following").updateChildValues([self.currentUserID! : true])
+            
+            followButton.titleLabel?.text = "Unfollow"
+            followButton.backgroundColor = UIColor.red
+            
+            isFollowing = true
+        } else {
+            let followerRef = Database.database().reference().child("users").child(self.currentUserID!)
+            followerRef.child("follower").child((Auth.auth().currentUser?.uid)!).removeValue()
+            
+            let followingRef = Database.database().reference().child("users").child((Auth.auth().currentUser?.uid)!)
+            followingRef.child("following").child(self.currentUserID!).removeValue()
+            
+            followButton.titleLabel?.textColor = UIColor.white
+            followButton.backgroundColor = UIColor.green
+            
+            isFollowing = false
+
+        }
+
     }
     
     

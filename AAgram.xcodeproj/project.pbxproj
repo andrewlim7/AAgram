@@ -12,6 +12,7 @@
 		812DEA6A1F039B4300C5755D /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812DEA691F039B4300C5755D /* CustomCell.swift */; };
 		812DEA6C1F04914D00C5755D /* ProfileImgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812DEA6B1F04914D00C5755D /* ProfileImgCell.swift */; };
 		818EF3BE1F02A7C8009F4B19 /* SelectedImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818EF3BD1F02A7C8009F4B19 /* SelectedImageVC.swift */; };
+		81D32ACF1F093FAF00DE9738 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D32ACE1F093FAF00DE9738 /* SearchCell.swift */; };
 		C73F624C1F053458003E152C /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C73F624B1F053458003E152C /* CommentCell.xib */; };
 		C73F624E1F053465003E152C /* CommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73F624D1F053465003E152C /* CommentVC.swift */; };
 		C73F62501F053475003E152C /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73F624F1F053475003E152C /* CommentCell.swift */; };
@@ -38,6 +39,7 @@
 		812DEA691F039B4300C5755D /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		812DEA6B1F04914D00C5755D /* ProfileImgCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImgCell.swift; sourceTree = "<group>"; };
 		818EF3BD1F02A7C8009F4B19 /* SelectedImageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedImageVC.swift; sourceTree = "<group>"; };
+		81D32ACE1F093FAF00DE9738 /* SearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		99D54A00CD4F3F3BC4863115 /* Pods-AAgram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AAgram.release.xcconfig"; path = "Pods/Target Support Files/Pods-AAgram/Pods-AAgram.release.xcconfig"; sourceTree = "<group>"; };
 		C73F624B1F053458003E152C /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		C73F624D1F053465003E152C /* CommentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentVC.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				812DEA671F0397D600C5755D /* Data.swift */,
+				81D32ACE1F093FAF00DE9738 /* SearchCell.swift */,
 				C790D3321F07771A00BED2E7 /* ProfileData.swift */,
 				812DEA691F039B4300C5755D /* CustomCell.swift */,
 				812DEA6B1F04914D00C5755D /* ProfileImgCell.swift */,
@@ -258,7 +261,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		5352923CA37395034330EF0E /* [CP] Copy Pods Resources */ = {
@@ -313,6 +316,7 @@
 				C77CFD891EFD04090047F1DC /* LoginVC.swift in Sources */,
 				C790D3311F06A4BF00BED2E7 /* ExploreVC.swift in Sources */,
 				C73F624E1F053465003E152C /* CommentVC.swift in Sources */,
+				81D32ACF1F093FAF00DE9738 /* SearchCell.swift in Sources */,
 				C73F62501F053475003E152C /* CommentCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

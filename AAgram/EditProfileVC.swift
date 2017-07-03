@@ -31,6 +31,8 @@ class EditProfileVC: UIViewController {
         }
     }
     
+    let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+    
     var isImageSelected : Bool = false
     var getBio : String?
     
@@ -38,7 +40,7 @@ class EditProfileVC: UIViewController {
         super.viewDidLoad()
         
         self.bioTextField.text = getBio
-        
+        setupSpinner()
 
         // Do any additional setup after loading the view.
     }
@@ -57,7 +59,7 @@ class EditProfileVC: UIViewController {
     }
 
     func didTapDoneButton(_ sender : Any){
-        
+        self.myActivityIndicator.startAnimating()
         if isImageSelected == true {
             guard
                 let uid = Auth.auth().currentUser?.uid,
@@ -96,11 +98,23 @@ class EditProfileVC: UIViewController {
                     let ref = Database.database().reference().child("users")
                     ref.child(uid).updateChildValues(param)
                 }
+                
+                self.myActivityIndicator.stopAnimating()
             }
-
+            
             self.dismiss(animated: true, completion: nil)
         }
 
+    }
+    
+    func setupSpinner(){
+        // Position Activity Indicator in the center of the main view
+        myActivityIndicator.center = view.center
+        
+        // If needed, you can prevent Acivity Indicator from hiding when stopAnimating() is called
+        myActivityIndicator.hidesWhenStopped = true
+        
+        view.addSubview(myActivityIndicator)
     }
 
 }

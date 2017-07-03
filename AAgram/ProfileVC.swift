@@ -100,6 +100,7 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         
         vc.selectedImg = cell.profilePostImgCell.image
         vc.selectedName = profileUsername.text!
+        vc.selectedProfileImage = self.profileImage.image
         
         self.present(vc, animated: true, completion: nil)
 

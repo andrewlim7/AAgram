@@ -14,10 +14,12 @@ class SelectedImageVC: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var captionTextView: UITextView!
     @IBOutlet weak var selectedImgView: UIImageView!
+    @IBOutlet weak var selectedProfPic: UIImageView!
     
     var selectedName: String = ""
     var selectedCaption: String = ""
     var selectedImg: UIImage!
+    var selectedProfileImage : UIImage?
     
     static let CellIdentifer = "SelectedImageVC"
     
@@ -28,7 +30,7 @@ class SelectedImageVC: UIViewController {
         usernameLabel.text = selectedName
         captionTextView.text = selectedCaption
         selectedImgView.image = selectedImg
-        
+        selectedProfPic.image = selectedProfileImage
     }
 
     override func didReceiveMemoryWarning() {

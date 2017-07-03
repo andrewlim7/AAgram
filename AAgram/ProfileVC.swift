@@ -114,9 +114,13 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         
         let cell = collectionView.cellForItem(at: indexPath) as! ProfileImgCell
         
+        let data = profileImgs[indexPath.row]
+        
         vc.selectedImg = cell.profilePostImgCell.image
         vc.selectedName = profileUsername.text!
         vc.selectedProfileImage = self.profileImage.image
+        
+        vc.postID = data
         
         self.navigationController?.pushViewController(vc, animated: true)
 

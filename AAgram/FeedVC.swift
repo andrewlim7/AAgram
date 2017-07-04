@@ -20,11 +20,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITa
             logoutButton.addTarget(self, action: #selector(didTapLogoutButton(_:)), for: .touchUpInside)
         }
     }
-    @IBOutlet weak var addUserButton: UIButton! {
-        didSet{
-            addUserButton.addTarget(self, action: #selector(didTapUserButton(_:)), for: .touchUpInside)
-        }
-    }
+
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -64,13 +60,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITa
         self.navigationController?.isNavigationBarHidden = false
         
         self.navigationItem.title = "AAGram"
-    }
-    
-    func didTapUserButton(_ sender : Any){
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let exploreVC = storyboard.instantiateViewController(withIdentifier: "ExploreVC") as! ExploreVC
-        self.navigationController?.pushViewController(exploreVC, animated: true)
-        
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {

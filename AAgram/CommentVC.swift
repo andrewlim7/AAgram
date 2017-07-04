@@ -29,9 +29,11 @@ class CommentVC: UIViewController {
     
     var currentPostID : Data?
     let currentUserID = Auth.auth().currentUser?.uid
+    var getUsername : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getUsernameFromDB()
         
     }
 
@@ -40,19 +42,38 @@ class CommentVC: UIViewController {
         
     }
     
+    func getUsernameFromDB(){
+        let uid = Auth.auth().currentUser?.uid
+        
+        Database.database().reference().child("users").child(uid!).observe(.value, with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String:Any],
+                let name = dictionary["username"] as? String {
+                self.getUsername = name
+            }
+        })
+        
+    }
+    
     func didTapPostButton (_ sender: Any){
         
-        guard let storeUID = self.currentUserID else { return }
+        guard
+            let storeUID = self.currentUserID,
+            let getName = self.getUsername
+            else { return }
         
         let param : [String : Any] = ["comment": self.commentTextView.text,
-                                      "userID": storeUID
-//                                      "username": currentPostID?.name,
-//                                      "postID": currentPostID?.pid,
+                                      "userID": storeUID,
+                                      "username": getName,
+                                      "postID": currentPostID?.pid,
                                       ]
 
         
-        let ref = Database.database().reference().child("posts")
-        ref.child((currentPostID?.pid)!).updateChildValues(param)
+        let commentRef = Database.database().reference().child("comments").childByAutoId()
+        commentRef.child((currentPostID?.pid)!).setValue(param)
+        
+        let postRef = Database.database().reference().child("posts").child("comment")
+        postRef.updateChildValues([storeUID:true])
         
         
     }

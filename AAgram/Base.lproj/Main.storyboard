@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7VC-sy-2E1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7VC-sy-2E1">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -30,7 +30,7 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="543"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" tableViewCell="qcD-VG-z8i" id="l6a-MT-N1v">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="542.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="543"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="diamond_K" translatesAutoresizingMaskIntoConstraints="NO" id="UbD-vH-Wbm" customClass="CircleView" customModule="AAgram" customModuleProvider="target">
@@ -197,7 +197,7 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="91"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V0d-7j-xFU" id="2EN-Zm-W5L">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="90.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="91"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="default" translatesAutoresizingMaskIntoConstraints="NO" id="9my-Yl-Mtb" customClass="CircleView" customModule="AAgram" customModuleProvider="target">
@@ -365,7 +365,7 @@
         <!--Search ProfileVC-->
         <scene sceneID="Qhj-Wu-Dhj">
             <objects>
-                <viewController id="84r-lk-yQC" customClass="SearchProfileVC" customModule="AAgram" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchProfileVC" id="84r-lk-yQC" customClass="SearchProfileVC" customModule="AAgram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="K3w-b7-kf7"/>
                         <viewControllerLayoutGuide type="bottom" id="8kF-9E-rh9"/>

@@ -20,11 +20,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITa
             logoutButton.addTarget(self, action: #selector(didTapLogoutButton(_:)), for: .touchUpInside)
         }
     }
-    @IBOutlet weak var addUserButton: UIButton! {
-        didSet{
-            addUserButton.addTarget(self, action: #selector(didTapUserButton(_:)), for: .touchUpInside)
-        }
-    }
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -66,13 +61,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITa
         self.navigationItem.title = "AAGram"
     }
     
-    func didTapUserButton(_ sender : Any){
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let exploreVC = storyboard.instantiateViewController(withIdentifier: "ExploreVC") as! ExploreVC
-        self.navigationController?.pushViewController(exploreVC, animated: true)
-        
-    }
-    
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         
         self.tableView.setContentOffset(CGPoint.zero, animated: true)
@@ -80,6 +68,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITa
     }
     
     func handleRefresh(){
+        
+        self.datas = []
+        fetchChats()
         self.datas.sort(by: {$0.timeStamp > $1.timeStamp})
         refresher.endRefreshing()
         tableView.reloadData()
@@ -92,7 +83,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITa
         //if firebaseAuth.currentUser != nil {
             do {
                 
-                try firebaseAuth.signOut()  //please ask kh why 2nd logout will reappeared logout
+                try firebaseAuth.signOut() 
                 loginManager.logOut()
                 
                 print ("Logged out successfully!")

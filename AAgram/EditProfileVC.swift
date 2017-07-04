@@ -39,11 +39,13 @@ class EditProfileVC: UIViewController, UITextFieldDelegate {
     
     var isImageSelected : Bool = false
     var getBio : String?
+    var getProfileImage : UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.bioTextField.text = getBio
+        self.changeImageView.image = getProfileImage
         setupSpinner()
         myActivityIndicator.color = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
         myActivityIndicator.backgroundColor = UIColor.gray

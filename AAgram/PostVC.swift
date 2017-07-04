@@ -159,10 +159,6 @@ class PostVC: UIViewController,UITabBarControllerDelegate, FusumaDelegate, UITex
 
     func fusumaWillClosed() {
         print("Will close")
-        
-    }
-    
-    func fusumaClosed() {
         if isReEditPost == true {
             dismiss(animated: true, completion: nil)
             isReEditPost = false
@@ -170,10 +166,14 @@ class PostVC: UIViewController,UITabBarControllerDelegate, FusumaDelegate, UITex
             print("closed")
             isNewPost = true
             imageView.image = nil
-            dismiss(animated: true, completion: nil)
             self.tabBarController?.selectedIndex = self.currentTabIndex
+            dismiss(animated: true, completion: nil)
+            
         }
         
+    }
+    
+    func fusumaClosed() {
 
     }
     

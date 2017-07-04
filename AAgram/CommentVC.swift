@@ -17,9 +17,13 @@ class CommentVC: UIViewController {
             
         }
     }
-    @IBOutlet weak var textField: UITextField!
-
-    @IBOutlet weak var postButton: UIButton!
+    
+    @IBOutlet weak var commentTextView: UITextView!
+    @IBOutlet weak var postButton: UIButton! {
+        didSet{
+            postButton.addTarget(self, action: #selector(didTapPostButton(_:)), for: .touchUpInside)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +32,10 @@ class CommentVC: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        
+    }
+    
+    func didTapPostButton (_ sender: Any){
         
     }
     

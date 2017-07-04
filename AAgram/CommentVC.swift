@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class CommentVC: UIViewController {
     
@@ -25,6 +27,9 @@ class CommentVC: UIViewController {
         }
     }
     
+    var currentPostID : Data?
+    let currentUserID = Auth.auth().currentUser?.uid
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,6 +41,19 @@ class CommentVC: UIViewController {
     }
     
     func didTapPostButton (_ sender: Any){
+        
+        guard let storeUID = self.currentUserID else { return }
+        
+        let param : [String : Any] = ["comment": self.commentTextView.text,
+                                      "userID": storeUID
+//                                      "username": currentPostID?.name,
+//                                      "postID": currentPostID?.pid,
+                                      ]
+
+        
+        let ref = Database.database().reference().child("posts")
+        ref.child((currentPostID?.pid)!).updateChildValues(param)
+        
         
     }
     

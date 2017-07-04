@@ -17,6 +17,7 @@ class LoginVC: UIViewController,FBSDKLoginButtonDelegate, UITextFieldDelegate{
         didSet{
             emailTextField.placeholder = "Insert email address"
             emailTextField.delegate = self
+            
         }
     }
     

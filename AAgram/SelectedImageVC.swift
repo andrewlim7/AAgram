@@ -39,8 +39,8 @@ class SelectedImageVC: UIViewController {
         super.viewDidLoad()
 
         
-        usernameLabel.text = selectedName
-        captionTextView.text = selectedCaption
+        usernameLabel.text = postID?.name
+        captionTextView.text = postID?.caption
         selectedImgView.image = selectedImg
         selectedProfPic.image = selectedProfileImage
         
@@ -49,10 +49,10 @@ class SelectedImageVC: UIViewController {
         
         ref.child("posts").child((postID?.pid)!).child("likes").observe(.value, with: { (snapshot) in
             if snapshot.hasChild((Auth.auth().currentUser?.uid)!) {
-                self.likeBtn.tintColor = UIColor.blue
+                self.likeBtn.setImage(UIImage(named: "filled-heart.png"), for: .normal)
                 //cell.liked = false
             } else {
-                self.likeBtn.tintColor = UIColor.black
+                self.likeBtn.setImage(UIImage(named: "empty-heart.png"), for: .normal)
                 //cell.liked = true
             }
         })
@@ -94,7 +94,8 @@ class SelectedImageVC: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let commentVC = storyboard.instantiateViewController(withIdentifier: "CommentVC") as! CommentVC
         
-        
+        commentVC.currentPostID = postID
+        commentVC.getUserProfilePic = selectedProfPic.image
         
         self.navigationController?.pushViewController(commentVC, animated: true)
         

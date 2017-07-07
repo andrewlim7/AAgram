@@ -10,6 +10,12 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
+protocol CommentDelegate {
+    func pushComment(CID : Data)
+    //1. create this protocol to setup custom delegatation and put every function that u want to use at others
+    
+}
+
 class CustomCell: UITableViewCell {
     
     
@@ -19,7 +25,13 @@ class CustomCell: UITableViewCell {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var likeCountLabel: UILabel!
-    @IBOutlet weak var commentButton: UILabel!
+    @IBOutlet weak var commentButton: UIButton!{
+        didSet{
+            commentButton.addTarget(self, action: #selector(didTapCommentButton(_:)), for: .touchUpInside)
+        }
+    }
+    
+    var delegate : CommentDelegate? //2. create the custom delegation
     
     var liked : Bool = false
     var postID : Data?
@@ -39,6 +51,15 @@ class CustomCell: UITableViewCell {
     override func prepareForReuse() {
         
         mainImageView.image = nil
+    }
+    
+    func didTapCommentButton(_ sender: Any){
+        
+        //3. create connection
+        if let PID = postID {
+            self.delegate?.pushComment(CID: PID)
+        }
+
     }
     
     @IBAction func likeButton(_ sender: Any) {

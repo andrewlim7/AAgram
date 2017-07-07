@@ -13,7 +13,7 @@ import FirebaseStorage
 import FBSDKLoginKit
 import SDWebImage
 
-class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITabBarControllerDelegate {
+class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITabBarControllerDelegate, CommentDelegate{
 
     @IBOutlet weak var logoutButton: UIButton! {
         didSet{
@@ -34,7 +34,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITa
         tableView.dataSource = self
         tableView.allowsSelection = false
         
-        fetchChats()
+        fetchPosts()
         
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refresher.addTarget(self, action: #selector(handleRefresh), for: UIControlEvents.valueChanged)
@@ -70,8 +70,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITa
     func handleRefresh(){
         
         self.datas = []
-        fetchChats()
-        self.datas.sort(by: {$0.timeStamp > $1.timeStamp})
+        fetchPosts()
         refresher.endRefreshing()
         tableView.reloadData()
     }
@@ -98,7 +97,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITa
         //}
     }
     
-    func fetchChats() {
+    func fetchPosts() {
         
         let ref = Database.database().reference()
         
@@ -121,6 +120,15 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITa
 
     }
     
+    func pushComment(CID : Data) { //1. confirm to the protocol, 2. call the function inside the protocol
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let commentVC = storyboard.instantiateViewController(withIdentifier: "CommentVC") as! CommentVC
+        
+        commentVC.currentPostID = CID
+        
+        self.navigationController?.pushViewController(commentVC, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return datas.count
@@ -128,7 +136,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell
+        let cell : CustomCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell
         
         let data = datas[indexPath.row]
         
@@ -145,10 +153,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITa
         let ref = Database.database().reference()
         ref.child("posts").child(data.pid).child("likes").observe(.value, with: { (snapshot) in
             if snapshot.hasChild((Auth.auth().currentUser?.uid)!) {
-                cell.likeBtn.tintColor = UIColor.blue
+                cell.likeBtn.setImage(UIImage(named: "filled-heart.png"), for: .normal)
                 //cell.liked = false
             } else {
-                cell.likeBtn.tintColor = UIColor.black
+                cell.likeBtn.setImage(UIImage(named: "empty-heart.png"), for: .normal)
                 //cell.liked = true
             }
         })
@@ -160,6 +168,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITa
             cell.likeCountLabel.text = "Total Likes:\(count)"
             
         })
+        
+        cell.delegate = self //create connection
         
         return cell
 

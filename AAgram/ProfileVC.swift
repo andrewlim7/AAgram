@@ -48,7 +48,7 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        fetchChats()
+        fetchPosts()
         
         
         if self.currentUserID == nil {
@@ -174,7 +174,7 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     }
     
     
-    func fetchChats() {
+    func fetchPosts() {
         
         let ref = Database.database().reference()
         
@@ -256,8 +256,6 @@ class ProfileVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
                     guard let postDictionary = dictionary["post"] as? [String:Any]
                         
                         else { return }
-                    
-//                    self.profileImgs.sort(by: {$0.timeStamp > $1.timeStamp})
                     
                     for (key,_) in postDictionary {
                         

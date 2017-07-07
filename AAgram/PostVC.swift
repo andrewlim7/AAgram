@@ -35,12 +35,6 @@ class PostVC: UIViewController,UITabBarControllerDelegate, FusumaDelegate, UITex
         }
     }
     
-    @IBOutlet weak var reselectImage: UIButton! {
-        didSet{
-            reselectImage.addTarget(self, action: #selector(reselectImageButton(_:)), for: .touchUpInside)
-        }
-    }
-    
     var isNewPost : Bool = true
     var isReEditPost : Bool = false
     
@@ -56,7 +50,24 @@ class PostVC: UIViewController,UITabBarControllerDelegate, FusumaDelegate, UITex
         
         myActivityIndicator.color = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
         myActivityIndicator.backgroundColor = UIColor.gray
+        
+        imageView.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(sender:)))
+        tapGestureRecognizer.numberOfTapsRequired = 1
+        imageView.addGestureRecognizer(tapGestureRecognizer)
 
+    }
+    
+    func imageTapped(sender: UITapGestureRecognizer) {
+        if isNewPost == false {
+            let fusuma = FusumaViewController()
+            fusuma.delegate = self
+            self.present(fusuma, animated: true, completion:nil)
+            
+            //isNewPost = true // this cause the whole problem, will present twice
+            doneButton.isEnabled = true
+            isReEditPost = true
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -103,6 +114,7 @@ class PostVC: UIViewController,UITabBarControllerDelegate, FusumaDelegate, UITex
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        imageView.image = nil
         if isNewPost == true {
 //            let pickerController = UIImagePickerController()
 //            pickerController.delegate = self
@@ -122,19 +134,6 @@ class PostVC: UIViewController,UITabBarControllerDelegate, FusumaDelegate, UITex
         
         self.textView.delegate = self
 
-    }
-    
-    func reselectImageButton(_ sender:Any){
-        
-        if isNewPost == false {
-            let fusuma = FusumaViewController()
-            fusuma.delegate = self
-            self.present(fusuma, animated: true, completion:nil)
-            
-            //isNewPost = true // this cause the whole problem, will present twice
-            doneButton.isEnabled = true
-            isReEditPost = true
-        }
     }
     
     func fusumaImageSelected(_ image: UIImage, source: FusumaMode) {

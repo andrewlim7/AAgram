@@ -17,6 +17,7 @@
 		812DEA6C1F04914D00C5755D /* ProfileImgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812DEA6B1F04914D00C5755D /* ProfileImgCell.swift */; };
 		818EF3BE1F02A7C8009F4B19 /* SelectedImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818EF3BD1F02A7C8009F4B19 /* SelectedImageVC.swift */; };
 		81D32ACF1F093FAF00DE9738 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D32ACE1F093FAF00DE9738 /* SearchCell.swift */; };
+		C73CE67C1F0D62600063D548 /* CommentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73CE67B1F0D62600063D548 /* CommentData.swift */; };
 		C73F624C1F053458003E152C /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C73F624B1F053458003E152C /* CommentCell.xib */; };
 		C73F624E1F053465003E152C /* CommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73F624D1F053465003E152C /* CommentVC.swift */; };
 		C73F62501F053475003E152C /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73F624F1F053475003E152C /* CommentCell.swift */; };
@@ -48,6 +49,7 @@
 		818EF3BD1F02A7C8009F4B19 /* SelectedImageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedImageVC.swift; sourceTree = "<group>"; };
 		81D32ACE1F093FAF00DE9738 /* SearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		99D54A00CD4F3F3BC4863115 /* Pods-AAgram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AAgram.release.xcconfig"; path = "Pods/Target Support Files/Pods-AAgram/Pods-AAgram.release.xcconfig"; sourceTree = "<group>"; };
+		C73CE67B1F0D62600063D548 /* CommentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentData.swift; sourceTree = "<group>"; };
 		C73F624B1F053458003E152C /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		C73F624D1F053465003E152C /* CommentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentVC.swift; sourceTree = "<group>"; };
 		C73F624F1F053475003E152C /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				812DEA671F0397D600C5755D /* Data.swift */,
+				C73CE67B1F0D62600063D548 /* CommentData.swift */,
 				810FE95F1F09FC6D007828DC /* CircleView.swift */,
 				C790D3321F07771A00BED2E7 /* ProfileData.swift */,
 				810FE9611F0B215C007828DC /* FancyButton.swift */,
@@ -163,13 +166,13 @@
 				C77CFD881EFD04090047F1DC /* LoginVC.swift */,
 				C77CFD8E1EFD04C20047F1DC /* RegisterVC.swift */,
 				C77CFD901EFD04FE0047F1DC /* FeedVC.swift */,
-				818EF3BD1F02A7C8009F4B19 /* SelectedImageVC.swift */,
+				C77CFD981EFD0B140047F1DC /* SearchVC.swift */,
 				810FE9671F0B3424007828DC /* SearchProfileVC.swift */,
 				C77CFD921EFD07D10047F1DC /* ProfileVC.swift */,
 				C77CFD941EFD0AF80047F1DC /* EditProfileVC.swift */,
-				C77CFD961EFD0B090047F1DC /* PostVC.swift */,
-				C77CFD981EFD0B140047F1DC /* SearchVC.swift */,
+				818EF3BD1F02A7C8009F4B19 /* SelectedImageVC.swift */,
 				C73F624D1F053465003E152C /* CommentVC.swift */,
+				C77CFD961EFD0B090047F1DC /* PostVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -218,7 +221,7 @@
 				TargetAttributes = {
 					C7743CF91EFCF6CF00B39FB2 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 3F9ZJ33XLL;
+						DevelopmentTeam = DQCNUZZSN6;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -326,6 +329,7 @@
 				812DEA6C1F04914D00C5755D /* ProfileImgCell.swift in Sources */,
 				C77CFD951EFD0AF80047F1DC /* EditProfileVC.swift in Sources */,
 				C77CFD891EFD04090047F1DC /* LoginVC.swift in Sources */,
+				C73CE67C1F0D62600063D548 /* CommentData.swift in Sources */,
 				810FE9681F0B3424007828DC /* SearchProfileVC.swift in Sources */,
 				C73F624E1F053465003E152C /* CommentVC.swift in Sources */,
 				81D32ACF1F093FAF00DE9738 /* SearchCell.swift in Sources */,
@@ -454,14 +458,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 3F9ZJ33XLL;
+				DEVELOPMENT_TEAM = DQCNUZZSN6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = AAgram/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.andrewlim7.AAgram12432;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andrewlim7.AAgram12;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
@@ -474,14 +478,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 3F9ZJ33XLL;
+				DEVELOPMENT_TEAM = DQCNUZZSN6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = AAgram/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.andrewlim7.AAgram12432;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andrewlim7.AAgram12;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;

@@ -13,6 +13,7 @@ class CommentCell: UITableViewCell {
     @IBOutlet weak var commentImage: UIImageView!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     
     static let cellNib = UINib(nibName: CommentCell.CellIdentifier, bundle: Bundle.main)
     static let CellIdentifier = "CommentCell"
